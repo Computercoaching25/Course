@@ -1,18 +1,18 @@
 {
   "name": "Chitragupt Academy",
-  "short_name": "CAcademy",
+  "short_name": "COMPUTER SIKHO",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#8ec5fc",
   "theme_color": "#232f3e",
   "icons": [
     {
-      "src": "logo.png",
+      "src": "icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "logo.png",
+      "src": "icon-192.png",
       "sizes": "512x512",
       "type": "image/png"
     }
