@@ -1,471 +1,1042 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-  <link rel="manifest" href="manifest.json">
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js');
-  }
-</script>
-  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CHITRAGUPT ACADEMY - Student Login</title>
-  <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    /* --- Your Existing Styles --- */
-    html, body, * {
-      -webkit-user-select: none !important; /* Chrome/Safari */
-      -moz-user-select: none !important;    /* Firefox */
-      -ms-user-select: none !important;     /* IE10+ */
-      user-select: none !important;
-      -webkit-touch-callout: none !important;
+  <meta name="theme-color" content="#071426">
+  <meta name="description" content="Namami Digital Skills Academy - Computer Courses, Practice Tests, Notes and Digital Skills Training.">
+
+  <title>NAMAMI DIGITAL SKILLS ACADEMY | Student Login</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js")
+          .catch(error => console.error("Service worker error:", error));
+      });
     }
+  </script>
+
+  <style>
+    :root {
+      --bg: #06101f;
+      --panel: #0d1d32;
+      --panel-light: #122943;
+      --cyan: #00e5ff;
+      --blue: #287bff;
+      --gold: #ffc857;
+      --white: #f5f9ff;
+      --muted: #a7bad2;
+      --border: rgba(0, 229, 255, .20);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      padding: 0;
-      min-height: 90vh;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+      min-height: 100vh;
       overflow-x: hidden;
+      font-family: "Poppins", Arial, sans-serif;
+      color: var(--white);
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(0, 112, 255, .18), transparent 48%),
+        radial-gradient(ellipse at 0% 40%, rgba(0, 229, 255, .07), transparent 40%),
+        var(--bg);
     }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .16;
+      z-index: -1;
+      background-image:
+        linear-gradient(rgba(0,229,255,.10) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,.10) 1px, transparent 1px);
+      background-size: 38px 38px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .top-line {
+      height: 4px;
+      background: linear-gradient(90deg, #0066ff, var(--cyan), var(--gold), #0066ff);
+      background-size: 200% 100%;
+      animation: lineMove 5s linear infinite;
+    }
+
+    @keyframes lineMove {
+      to { background-position: 200% 0; }
+    }
+
     .header {
-      background: rgba(35,47,62,0.92);
-      color: #fff;
-      text-align: center;
-      padding: 40px 10px 24px 10px;
       position: relative;
-      box-shadow: 0 2px 16px rgba(44,62,80,0.13);
-      border-bottom-left-radius: 38px;
-      border-bottom-right-radius: 38px;
+      padding: 28px 18px 30px;
+      text-align: center;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(14, 36, 62, .92), rgba(6, 16, 31, .25));
+      border-bottom: 1px solid var(--border);
     }
-    .logo {
-      width: 100px;
-      height: 100px;
-      background: linear-gradient(135deg, #00d9ff, #00ffea, #20d2ff);
+
+    .header::before,
+    .header::after {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      border: 1px solid rgba(0, 229, 255, .13);
       border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .header::before {
+      left: -130px;
+      top: -100px;
+      box-shadow: 0 0 0 22px rgba(0,229,255,.025),
+                  0 0 0 45px rgba(0,229,255,.02);
+    }
+
+    .header::after {
+      right: -130px;
+      bottom: -160px;
+      box-shadow: 0 0 0 22px rgba(0,229,255,.025),
+                  0 0 0 45px rgba(0,229,255,.02);
+    }
+
+    .logo-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 12px;
+      width: min(250px, 68vw);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      animation: logoFloat 4s ease-in-out infinite;
+    }
+
+    .logo-wrap::before {
+      content: "";
+      position: absolute;
+      inset: -7px;
+      border-radius: 50%;
+      border: 2px solid rgba(0,229,255,.8);
+      box-shadow: 0 0 18px rgba(0,229,255,.3),
+                  inset 0 0 18px rgba(0,229,255,.1);
+      animation: ringGlow 3s ease-in-out infinite alternate;
+    }
+
+    .logo-wrap img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 16px rgba(255, 200, 87, .12));
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes ringGlow {
+      from { box-shadow: 0 0 10px rgba(0,229,255,.15); }
+      to { box-shadow: 0 0 26px rgba(0,229,255,.4); }
+    }
+
+    .brand-tag {
+      color: var(--cyan);
+      font-family: "Orbitron", sans-serif;
+      font-size: .76rem;
+      letter-spacing: 3px;
+      font-weight: 700;
+      margin-top: 16px;
+    }
+
+    .header-subtitle {
+      margin: 10px auto 0;
+      max-width: 650px;
+      color: var(--muted);
+      font-size: .88rem;
+      letter-spacing: .5px;
+    }
+
+    .header-subtitle span {
+      color: var(--gold);
+    }
+
+    .contact-bar {
+      width: min(1100px, 94%);
+      margin: 20px auto 28px;
+      padding: 13px 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px 28px;
+      background: rgba(13, 29, 50, .92);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.15);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .81rem;
+      color: #d7e5f7;
+      line-height: 1.7;
+    }
+
+    .contact-item i {
+      color: var(--cyan);
+      font-size: 1rem;
+    }
+
+    .contact-item strong {
+      color: var(--gold);
+    }
+
+    .ticker {
+      width: min(1100px, 94%);
+      margin: 0 auto 32px;
+      overflow: hidden;
+      border: 1px solid rgba(0,229,255,.2);
+      background: linear-gradient(90deg, rgba(0,100,255,.13), rgba(0,229,255,.07));
+      border-radius: 10px;
+      padding: 12px 0;
+    }
+
+    .ticker-track {
+      display: inline-block;
+      white-space: nowrap;
+      padding-left: 100%;
+      animation: tickerMove 30s linear infinite;
+      color: #e0f8ff;
+      font-size: .86rem;
+    }
+
+    .ticker:hover .ticker-track {
+      animation-play-state: paused;
+    }
+
+    .ticker-track span {
+      margin-right: 45px;
+    }
+
+    .ticker-track i {
+      color: var(--gold);
+      margin-right: 8px;
+    }
+
+    @keyframes tickerMove {
+      to { transform: translateX(-100%); }
+    }
+
+    .container {
+      width: min(1120px, 94%);
+      margin: 0 auto;
+    }
+
+    .intro {
+      text-align: center;
+      margin: 0 auto 30px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 13px;
+      border: 1px solid rgba(0,229,255,.3);
+      border-radius: 50px;
+      background: rgba(0,229,255,.06);
+      color: var(--cyan);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .intro h1 {
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(1.25rem, 3.5vw, 2.15rem);
+      line-height: 1.5;
+      margin: 0 0 12px;
+      font-weight: 800;
+    }
+
+    .intro h1 span {
+      color: var(--cyan);
+      text-shadow: 0 0 18px rgba(0,229,255,.25);
+    }
+
+    .intro p {
+      color: var(--muted);
+      font-size: .91rem;
+      margin: 0 auto;
+      max-width: 700px;
+      line-height: 1.8;
+    }
+
+    .login-section {
+      max-width: 480px;
+      margin: 0 auto 60px;
+    }
+
+    .login-box {
+      position: relative;
+      overflow: hidden;
+      padding: 32px;
+      background: linear-gradient(145deg, rgba(18,41,67,.98), rgba(9,24,43,.98));
+      border: 1px solid rgba(0,229,255,.28);
+      border-radius: 22px;
+      box-shadow: 0 18px 55px rgba(0,0,0,.28),
+                  0 0 30px rgba(0,119,255,.06);
+    }
+
+    .login-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 12%;
+      width: 76%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    }
+
+    .login-heading {
+      text-align: center;
+      margin-bottom: 27px;
+    }
+
+    .login-icon {
+      display: grid;
+      place-items: center;
+      margin: 0 auto 13px;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #00c8ff, #287bff);
+      box-shadow: 0 6px 22px rgba(0,180,255,.25);
+      font-size: 1.45rem;
+      color: #fff;
+    }
+
+    .login-heading h2 {
+      margin: 0 0 7px;
+      font-family: "Orbitron", sans-serif;
+      font-size: 1.25rem;
+      letter-spacing: 1px;
+    }
+
+    .login-heading p {
+      color: var(--muted);
+      font-size: .79rem;
+      margin: 0;
+    }
+
+    .input-group {
+      margin-bottom: 19px;
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      color: #e4efff;
+      font-size: .84rem;
+      font-weight: 500;
+      margin-bottom: 9px;
+    }
+
+    .input-group label i {
+      color: var(--cyan);
+      margin-right: 7px;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap input {
+      display: block;
+      width: 100%;
+      min-height: 49px;
+      border: 1px solid rgba(167,186,210,.22);
+      outline: none;
+      border-radius: 11px;
+      background: rgba(4,14,28,.8);
+      padding: 13px 44px 13px 15px;
+      color: #fff;
+      font-family: inherit;
+      font-size: .9rem;
+      transition: border .2s, box-shadow .2s;
+    }
+
+    .input-wrap input::placeholder {
+      color: #7187a3;
+    }
+
+    .input-wrap input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(0,229,255,.09);
+    }
+
+    .field-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #8aa6c5;
+      pointer-events: none;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: #8aa6c5;
+      padding: 7px;
+      cursor: pointer;
+    }
+
+    .password-toggle:hover {
+      color: var(--cyan);
+    }
+
+    .submit-btn {
+      width: 100%;
+      min-height: 51px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 11px;
+      cursor: pointer;
+      background: linear-gradient(100deg, #00c8ff, #287bff);
+      color: #fff;
+      font-family: inherit;
+      font-size: .94rem;
+      font-weight: 700;
+      letter-spacing: .7px;
+      box-shadow: 0 8px 25px rgba(0,119,255,.24);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0,180,255,.3);
+    }
+
+    .submit-btn i {
+      margin-left: 9px;
+    }
+
+    .error-msg {
+      min-height: 24px;
+      margin-top: 13px;
+      text-align: center;
+      font-size: .82rem;
+      color: #ff8585;
+      line-height: 1.6;
+    }
+
+    .login-note {
+      text-align: center;
+      margin-top: 13px;
+      color: #8199b7;
+      font-size: .72rem;
+    }
+
+    .login-note i {
+      color: var(--gold);
+      margin-right: 5px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .section-title h2 {
+      margin: 0 0 9px;
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(1.1rem, 3vw, 1.65rem);
+      line-height: 1.5;
+    }
+
+    .section-title h2 span {
+      color: var(--cyan);
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .83rem;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 35px;
+    }
+
+    .course-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 205px;
+      padding: 23px 20px;
+      border: 1px solid rgba(167,186,210,.14);
+      border-radius: 17px;
+      background: linear-gradient(145deg, rgba(18,41,67,.95), rgba(9,24,43,.95));
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+    }
+
+    .course-card::after {
+      content: "";
+      position: absolute;
+      right: -35px;
+      bottom: -45px;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: rgba(0,229,255,.035);
+      transition: background .25s;
+    }
+
+    .course-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0,229,255,.6);
+      box-shadow: 0 12px 32px rgba(0,0,0,.22), 0 0 22px rgba(0,229,255,.05);
+    }
+
+    .course-card:hover::after {
+      background: rgba(0,229,255,.10);
+    }
+
+    .course-icon {
+      display: grid;
+      place-items: center;
+      width: 49px;
+      height: 49px;
+      margin-bottom: 16px;
+      border-radius: 14px;
+      color: var(--cyan);
+      background: rgba(0,229,255,.09);
+      border: 1px solid rgba(0,229,255,.16);
+      font-size: 1.35rem;
+    }
+
+    .course-title {
+      display: block;
+      color: #f3f8ff;
+      font-weight: 600;
+      font-size: .96rem;
+      margin-bottom: 9px;
+      line-height: 1.6;
+    }
+
+    .course-desc {
+      display: block;
+      color: #9eb2cb;
+      font-size: .78rem;
+      line-height: 1.85;
+    }
+
+    .enroll-area {
+      text-align: center;
+      margin: 10px 0 65px;
+    }
+
+    .buy-now {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 12px;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-      font-size: 2.8rem;
-      color: #232f3e;
-      border: 4px solid #fff;
-      animation: logoPulse 2.2s infinite alternate;
-      overflow: hidden;
-    }
-    .logo img {
-      width: 100px;
-      height: 110px;
-      object-fit: contain;
-      border-radius: 50%;
-      display: block;
-      margin: auto;
-    }
-    @keyframes logoPulse {
-      0% { box-shadow: 0 0 0 0 #ffcc33; }
-      100% { box-shadow: 0 0 32px 12px #ffecb399; }
-    }
-    .institute-name {
-      font-size: 2.5rem;
-      font-weight: 1000;
-      letter-spacing: 2px;
-      margin-top: 10px;
-      text-shadow: 0 2px 12px #232f3e55;
-    }
-    .iso {
-      font-size: 1.12rem;
-      letter-spacing: 1px;
-      font-weight: 900;
-      color: #ffd700;
-      margin-bottom: 5px;
-      text-shadow: 0 1px 6px #232f3e33;
-    }
-    .ad-section {
-      background: rgba(255,255,255,0.70);
-      margin: 3px auto 0 auto;
-      border-radius: 24px;
-      box-shadow: 0 8px 32px rgba(44,62,80,0.11);
-      padding: 3px 18px 18px 18px;
-      max-width: 1100px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      backdrop-filter: blur(6px);
-    }
-    .ad-headline {
-      font-size: 1.65rem;
-      font-weight: bold;
-      color: #2d3a4e;
-      margin-bottom: 8px;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 8px #fff;
-      line-height: 1.4;
-    }
-    .ad-highlight {
-      color: #ffb347;
-      font-weight: 900;
-      font-size: 1.25em;
-      text-shadow: 0 2px 8px #fff8;
-    }
-    .courses-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 22px;
-      margin-bottom: 18px;
-    }
-    .course-card {
-      background: rgba(255,255,255,0.95);
-      border-radius: 18px;
-      box-shadow: 0 4px 18px rgba(44,62,80,0.13);
-      padding: 22px 20px 18px 20px;
-      width: 260px;
-      min-height: 150px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
-      position: relative;
-      overflow: hidden;
-      border: 2px solid transparent;
-      cursor: move;
-    }
-    .course-card:hover {
-      transform: translateY(-8px) scale(1.045) rotate(-1deg);
-      box-shadow: 0 10px 32px rgba(44,62,80,0.19);
-      background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
-      border: 2px solid #ffb347;
-    }
-    .course-icon {
-      font-size: 2.3rem;
-      color: #ffb347;
-      margin-bottom: 10px;
-      text-shadow: 0 2px 8px #ffe082;
-    }
-    .course-title {
-      font-weight: bold;
-      font-size: 1.18rem;
-      color: #232f3e;
-      margin-bottom: 4px;
-    }
-    .course-desc {
-      font-size: 1.03rem;
-      color: #444;
-      margin-bottom: 2px;
-    }
-    .buy-now {
-      display: inline-block;
-      margin: 28px auto 5px auto;
-      background: linear-gradient(90deg, #b154c9, #1c71d8, #9943ca);
-      color: #fff;
-      font-weight: bold;
-      padding: 14px 44px;
-      border-radius: 32px;
-      font-size: 1.18rem;
-      text-decoration: none;
-      box-shadow: 0 6px 20px rgb(52, 122, 214);
-      border: none;
-      letter-spacing: 1px;
-      opacity: 0.95;
+      gap: 12px;
+      padding: 15px 30px;
+      max-width: 100%;
+      border-radius: 50px;
+      background: linear-gradient(100deg, #ffc857, #ff9f43);
+      color: #101a2b;
+      font-size: .9rem;
+      font-weight: 800;
+      letter-spacing: .4px;
+      box-shadow: 0 8px 25px rgba(255,180,60,.18);
+      border: 0;
       cursor: default;
-      pointer-events: none;
-      transition: background 0.2s, color 0.2s, transform 0.1s;
-      filter: grayscale(0.2);
-      user-select: none;
     }
-    .buy-now:active,
-    .buy-now:focus {
-      outline: none;
-      box-shadow: none;
+
+    .enroll-area p {
+      margin: 13px 0 0;
+      color: #91a7c2;
+      font-size: .77rem;
     }
-    .login-section {
-      margin: 40px auto 0 auto;
-      max-width: 420px;
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 26px 15px;
+      text-align: center;
+      background: rgba(4,12,24,.5);
+    }
+
+    .footer-brand {
+      font-family: "Orbitron", sans-serif;
+      color: var(--cyan);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 9px;
+    }
+
+    .footer p {
+      margin: 5px 0;
+      color: #8fa5c0;
+      font-size: .75rem;
+      line-height: 1.8;
+    }
+
+    .footer .creator {
+      color: var(--gold);
+    }
+
+    #install-banner {
+      display: none;
+      position: fixed;
+      left: 16px;
+      bottom: 16px;
+      z-index: 1000;
+    }
+
+    #install-btn {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      z-index: 2;
-      position: relative;
-    }
-    .login-box {
-      background: rgba(209, 255, 255, 0.97);
-      width: 100%;
-      padding: 36px 36px 26px 36px;
-      border-radius: 22px;
-      box-shadow: 0 10px 36px rgba(44,62,80,0.13);
-      text-align: center;
-      position: relative;
-      z-index: 2;
-      backdrop-filter: blur(4px);
-    }
-    .login-title {
-      font-size: 1.7rem;
-      font-weight: bold;
-      color: #232f3e;
-      margin-bottom: 24px;
-      letter-spacing: 1px;
-    }
-    .input-group {
-      margin-bottom: 22px;
-      text-align: left;
-    }
-    .input-group label {
-      font-size: 1.05rem;
-      color: #2d3a4e;
-      font-weight: 500;
-      margin-bottom: 7px;
-      display: block;
-      letter-spacing: 0.5px;
-    }
-    .input-group input {
-      width: 92%;
-      padding: 12px 16px;
-      border: 1.5px solid #bdbdbd;
-      border-radius: 9px;
-      font-size: 1.12rem;
-      outline: none;
-      transition: border 0.2s;
-      margin-bottom: 5px;
-      background: #f7fafc;
-    }
-    .input-group input:focus {
-      border: 1.5px solid #ffb347;
-    }
-    .submit-btn {
-      width: 100%;
-      background: linear-gradient(90deg, #ffb347, #ffcc33, #ffecb3);
-      color: #232f3e;
-      font-weight: bold;
-      border: none;
-      border-radius: 9px;
-      padding: 13px 0;
-      font-size: 1.15rem;
+      gap: 9px;
+      padding: 12px 17px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,229,255,.45);
+      background: #0c2540;
+      color: #fff;
+      font-family: inherit;
+      font-size: .82rem;
+      font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 2px 10px rgba(255, 204, 51, 0.13);
-      transition: background 0.2s, color 0.2s, transform 0.1s;
-      margin-top: 4px;
+      box-shadow: 0 8px 28px rgba(0,0,0,.35);
     }
-    .submit-btn:hover {
-      background: linear-gradient(90deg, #ffecb3, #ffb347, #ffcc33);
-      color: #232f3e;
-      transform: scale(1.03);
-    }
-    .error-msg {
-      color: #d32f2f;
-      font-size: 1.08rem;
-      margin-top: 12px;
-      min-height: 22px;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-    }
-    .watermark {
-      position: relative;
-      bottom: 18px;
-      left: 0;
-      width: 90vw;
-      text-align: center;
-      pointer-events: none;
-      z-index: 999;
-      user-select: none;
-      font-size: 1.15rem;
-      font-weight: bold;
-      letter-spacing: 1px;
-      background: linear-gradient(90deg, #bb1616, #e40c0c, #fffb06, #fcf829, #c300ff, #4c00ff, #d81c7a, #ee2828, #b10101);
-      background-size: 300% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: watermark-move 6s linear infinite;
-      padding-left: 24px;
-      opacity: 0.98;
-      filter: drop-shadow(0 1px 4px #232f3e99);
-    }
-    @keyframes watermark-move {
-      0% {background-position: 0% 50%;}
-      100% {background-position: 100% 50%;}
-    }
-    .login-section { margin-bottom: 120px; }
-    @media (max-width: 1100px) {
-      .courses-grid {flex-wrap: wrap;}
-      .course-card {width: 90vw;}
-    }
-    @media (max-width: 700px) {
-      .ad-section {padding: 16px 2vw;}
-      .login-section {margin-top: 40px;}
-      .login-box {padding: 18px 5vw;}
-      .course-card {padding: 14px 7px;}
-      .header {padding: 18px 2px 12px 2px;}
-    }
-    @media (max-width: 500px) {
-      .institute-name {font-size: 1.3rem;}
-      .login-box {padding: 12px 2vw;}
-      .ad-headline {font-size: 1.08rem;}
-      .watermark {font-size: 0.92rem;}
-      .course-card {width: 98vw;}
-      .logo img {width: 60px; height: 60px;}
-    }
-    .marquee-container {
-  width: 90vw;
-  max-width: 1000px;
-  margin: 0 auto 18px auto;
-  overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 6px 24px rgba(44, 62, 80, 0.12);
-  background: linear-gradient(90deg, #e0c3fc 0%, #8ec5fc 100%);
-  border: 1.5px solid #e3e8ee;
-  padding: 12px 0;
-  position: relative;
-  top: -20px;
-  z-index: 10;
-}
 
-.marquee-content {
-  display: inline-block;
-  white-space: nowrap;
-  padding-left: 100%;
-  font-size: 1.25rem;
-  color: #1a3a4a;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 8px rgba(34,52,68,0.07);
-  animation: marquee 25s linear infinite;
-  transition: color 0.3s;
-  vertical-align: middle;
-}
+    #install-btn i {
+      color: var(--cyan);
+    }
 
-.marquee-container:hover .marquee-content {
-  animation-play-state: paused;
-  color: #0a7cff;
-}
+    @media (max-width: 850px) {
+      .courses-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
 
-@keyframes marquee {
-  0%   { transform: translateX(0%);}
-  100% { transform: translateX(-100%);}
-}
+      .contact-bar {
+        gap: 10px 18px;
+      }
+    }
 
-@media (max-width: 800px) {
-  .marquee-container {
-    width: 99vw;
-    font-size: 1rem;
-    border-radius: 10px;
-    padding: 7px 0;
-  }
-  .marquee-content {
-    font-size: 0.98rem;
-  }
-}
+    @media (max-width: 560px) {
+      .header {
+        padding: 25px 12px 25px;
+      }
+
+      .logo-wrap {
+        width: min(210px, 64vw);
+      }
+
+      .brand-tag {
+        font-size: .62rem;
+        letter-spacing: 2px;
+      }
+
+      .header-subtitle {
+        font-size: .76rem;
+        line-height: 1.8;
+      }
+
+      .contact-bar {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px;
+      }
+
+      .contact-item {
+        font-size: .75rem;
+        align-items: flex-start;
+      }
+
+      .ticker {
+        margin-bottom: 26px;
+      }
+
+      .ticker-track {
+        font-size: .76rem;
+      }
+
+      .container {
+        width: 92%;
+      }
+
+      .intro p {
+        font-size: .81rem;
+      }
+
+      .login-section {
+        margin-bottom: 48px;
+      }
+
+      .login-box {
+        padding: 25px 19px;
+        border-radius: 18px;
+      }
+
+      .courses-grid {
+        grid-template-columns: 1fr;
+        gap: 13px;
+      }
+
+      .course-card {
+        min-height: auto;
+        padding: 20px;
+      }
+
+      .course-icon {
+        margin-bottom: 12px;
+      }
+
+      .buy-now {
+        padding: 14px 19px;
+        font-size: .79rem;
+      }
+
+      #install-banner {
+        left: 10px;
+        bottom: 10px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
   </style>
 </head>
+
 <body>
 
-<div id="install-banner" style="display:none; position: fixed; top: 10px; left: 10px; z-index: 9999;">
-    <button id="install-btn" style="background: #28a745; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">
-       📲 Install App
-    </button>
-</div>
+  <div class="top-line"></div>
 
-  
-  <div class="header">
-    <div class="logo">
-      <img src="logo.png" alt="Chitragupt Academy Logo">
+  <!-- Academy Logo and Branding -->
+  <header class="header">
+    <div class="logo-wrap">
+      <img src="logo.png" alt="Namami Digital Skills Academy Logo">
     </div>
-    <div class="institute-name">CHITRAGUPT ACADEMY</div>
-    <div class="iso">AN ISO CERTIFIED INSTITUTION</div>
-  </div><br><br>
- <!-- Marquee Section (Header ke niche) -->
-<div class="marquee-container">
-  <span class="marquee-content">
-    <i class="fas fa-map-marker-alt" style="color:#ff4d4d;margin-right:10px;"></i>
-    <b>Address:-</b> Rajendra Ward Nearest of Govt. Girls Hr. Sec. School Sohagpur. Dist. Naramadapuram (M.P.)
-    <i class="fas fa-phone" style="color:#2196f3;margin-left:20px;margin-right:4px;"></i>
-    <b>Contact No.:-</b> 7067779214, 9907808044.
-  </span>
-</div>
 
-  <div class="ad-section">
-    <div class="ad-headline">
-      <span class="ad-highlight">All Computer Courses, Notes, Practice Tests & Extra Materials</span><br>
-      <span style="color:#2d3a4e; font-weight: 600;">Now in <span class="ad-highlight">One Place!</span></span>
+    <div class="brand-tag">
+      <i class="fas fa-microchip"></i>
+      DIGITAL LEARNING EXPERIENCE
     </div>
-      <div class="login-section">
-    <div class="login-box">
-      <div class="login-title">Student Login</div>
-      <form id="loginForm" autocomplete="off">
-        <div class="input-group">
-          <label for="studentId">Student Name</label>
-          <input type="text" id="studentId" placeholder="Enter your name" required>
+
+    <p class="header-subtitle">
+      Learn New Skills <span>•</span> Grow Your Knowledge
+      <span>•</span> Build Your Future
+    </p>
+  </header>
+
+  <!-- Contact Information -->
+  <div class="contact-bar">
+    <div class="contact-item">
+      <i class="fas fa-location-dot"></i>
+      <div>
+        <strong>ADDRESS</strong><br>
+        Rajendra Ward, near Govt. Girls Hr. Sec. School,
+        Sohagpur, Dist. Narmadapuram (M.P.)
+      </div>
+    </div>
+
+    <div class="contact-item">
+      <i class="fas fa-phone-volume"></i>
+      <div>
+        <strong>CONTACT NUMBER</strong><br>
+        <a href="tel:7067779214">7067779214</a>,
+        <a href="tel:9907808044">9907808044</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Moving Announcement -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <span><i class="fas fa-graduation-cap"></i>
+        Welcome to Namami Digital Skills Academy</span>
+      <span><i class="fas fa-laptop-code"></i>
+        Computer Courses, Notes and Practice Tests</span>
+      <span><i class="fas fa-keyboard"></i>
+        CPCT Preparation and Typing Practice</span>
+      <span><i class="fas fa-certificate"></i>
+        Learn Today, Succeed Tomorrow</span>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- Introduction -->
+    <section class="intro">
+      <div class="eyebrow">
+        <i class="fas fa-bolt"></i> YOUR DIGITAL JOURNEY STARTS HERE
+      </div>
+
+      <h1>
+        Learn Smart. <span>Grow Faster.</span><br>
+        Build Your Digital Future.
+      </h1>
+
+      <p>
+        All Computer Courses, Study Notes, Practice Tests and Extra
+        Learning Materials — Everything You Need in One Place!
+      </p>
+    </section>
+
+    <!-- Student Login -->
+    <section class="login-section" id="student-login">
+      <div class="login-box">
+
+        <div class="login-heading">
+          <div class="login-icon">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <h2>STUDENT LOGIN</h2>
+          <p>Sign in to access your learning dashboard</p>
         </div>
-        <div class="input-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Enter password" required>
-        </div>
-        <button type="submit" class="submit-btn">Login</button>
-        <div class="error-msg" id="errorMsg"></div>
-      </form>
-    </div>
-  </div>
-    <div class="courses-grid">
-      <div class="course-card">
-        <span class="course-icon"><i class="fas fa-desktop"></i></span>
-        <span class="course-title">Basic Computer Course</span>
-        <span class="course-desc">Parts, Accessories, Notepad, MS Office, File Handling, MCQ exam & Certificate.</span>
-      </div>
-      <div class="course-card">
-        <span class="course-icon"><i class="fas fa-laptop"></i></span>
-        <span class="course-title">Advanced Computer Course</span>
-        <span class="course-desc">Word, Excel, PowerPoint, Access, Outlook - all advanced modules.</span>
-      </div>
-      <div class="course-card">
-        <span class="course-icon"><i class="fas fa-keyboard"></i></span>
-        <span class="course-title">CPCT Preparation</span>
-        <span class="course-desc">Hindi/English Typing, MCQ Tests, Key Tips, CPCT Topics & Practice Materials.</span>
-      </div>
-      <div class="course-card">
-        <span class="course-icon"><i class="fas fa-globe"></i></span>
-        <span class="course-title">Internet & Email</span>
-        <span class="course-desc">Internet Browsing, Email Handling, Online Safety & Etiquette.</span>
-      </div>
-      <div class="course-card">
-        <span class="course-icon"><i class="fas fa-calculator"></i></span>
-        <span class="course-title">Tally with GST</span>
-        <span class="course-desc">Accounting Software Basics, GST Implementation, Practical Training Notes.</span>
-      </div>
-      <div class="course-card">
-        <span class="course-icon"><i class="fas fa-paint-brush"></i></span>
-        <span class="course-title">Graphic Design</span>
-        <span class="course-desc">Photoshop, CorelDRAW, Creative Projects & Tools Information.</span>
-      </div>
-      <div class="course-card">
-        <span class="course-icon"><i class="fas fa-chart-bar"></i></span>
-        <span class="course-title">MS Power BI</span>
-        <span class="course-desc">Dashboards, Data Analysis, Large Data Management, Visualization.</span>
-      </div>
-      <div class="course-card">
-        <span class="course-icon"><i class="fas fa-code"></i></span>
-        <span class="course-title">Web Designing</span>
-        <span class="course-desc">Web Layouts, Responsive Pages, HTML/CSS/JS, Live Projects.</span>
-      </div>
-      <div class="course-card">
-  <span class="course-icon"><i class="fas fa-bolt"></i></span>
-  <span class="course-title">Competitive Exams Computer Materials</span>
-  <span class="course-desc">
-    Comprehensive MCQs, theory notes, and practice sets for all computer-related competitive exams and previous year questions.
-  </span>
-</div>
 
-    </div>
-    <button class="buy-now" tabindex="-1" aria-disabled="true">
-      Enroll Now & Build Your Future!
+        <form id="loginForm" autocomplete="on">
+          <div class="input-group">
+            <label for="studentId">
+              <i class="fas fa-user"></i> Student Name
+            </label>
+
+            <div class="input-wrap">
+              <input
+                type="text"
+                id="studentId"
+                name="studentName"
+                placeholder="Enter your name"
+                autocomplete="username"
+                required
+              >
+              <i class="fas fa-user-pen field-icon"></i>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="password">
+              <i class="fas fa-lock"></i> Password
+            </label>
+
+            <div class="input-wrap">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your course password"
+                autocomplete="current-password"
+                required
+              >
+
+              <button
+                type="button"
+                class="password-toggle"
+                id="togglePassword"
+                aria-label="Show password"
+                title="Show or hide password"
+              >
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            Login to Dashboard <i class="fas fa-arrow-right"></i>
+          </button>
+
+          <div class="error-msg" id="errorMsg" role="alert"
+               aria-live="polite"></div>
+        </form>
+
+        <div class="login-note">
+          <i class="fas fa-shield-halved"></i>
+          Enter your name and the password provided for your course.
+        </div>
+      </div>
+    </section>
+
+    <!-- Courses -->
+    <section id="courses">
+      <div class="section-title">
+        <div class="eyebrow">EXPLORE YOUR POTENTIAL</div>
+        <h2>OUR <span>COURSES & LEARNING</span> MATERIALS</h2>
+        <p>Practical knowledge for your education, career and competitive exams.</p>
+      </div>
+
+      <div class="courses-grid">
+
+        <article class="course-card">
+          <span class="course-icon">
+            <i class="fas fa-desktop"></i>
+          </span>
+          <span class="course-title">Basic Computer Course</span>
+          <span class="course-desc">
+            Computer Parts, Accessories, Notepad, MS Office,
+            File Handling, MCQ Exams and Course Materials.
+          </span>
+        </article>
+
+        <article class="course-card">
+          <span class="course-icon">
+            <i class="fas fa-laptop-code"></i>
+          </span>
+          <span class="course-title">Advanced Computer Course</span>
+          <span class="course-desc">
+            Microsoft Word, Excel, PowerPoint, Access, Outlook
+            and advanced computer applications.
+          </span>
+        </article>
+
+        <article class="course-card">
+          <span class="course-icon">
+            <i class="fas fa-keyboard"></i>
+          </span>
+          <span class="course-title">CPCT Preparation</span>
+          <span class="course-desc">
+            Hindi and English Typing, MCQ Tests, Key Tips,
+            CPCT Topics and Practice Materials.
+          </span>
+        </article>
+
+        <article class="course-card">
+          <span class="course-icon">
+            <i class="fas fa-globe"></i>
+          </span>
+          <span class="course-title">Internet & Email</span>
+          <span class="course-desc">
+            Internet Browsing, Email Handling, Online Safety,
+            Digital Communication and Internet Etiquette.
+          </span>
+        </article>
+
+        <article class="course-card">
+          <span class="course-icon">
+            <i class="fas fa-calculator"></i>
+          </span>
+          <span class="course-title">Tally with GST</span>
+          <span class="course-desc">
+            Accounting Software, Company Creation, Vouchers,
+            GST Implementation and Practical Accounting.
+          </span>
+        </article>
+
+        <article class="course-card">
+          <span class="course-icon">
+            <i class="fas fa-palette"></i>
+          </span>
+          <span class="course-title">Graphic Design</span>
+          <span class="course-desc">
+            Photoshop, CorelDRAW, Design Tools, Creative
+            Projects and Graphic Design Fundamentals.
+          </span>
+        </article>
+
+        <article class="course-card">
+          <span class="course-icon">
+            <i class="fas fa-chart-line"></i>
+          </span>
+          <span class="course-title">MS Power BI</span>
+          <span class="course-desc">
+            Data Analysis, Interactive Dashboards, Data
+            Management and Professional Visualizations.
+          </span>
+        </article>
+
+        <article class="course-card">
+          <span class="course-icon">
+            <i class="fas fa-code"></i>
+          </span>
+          <span class="course-title">Web Designing</span>
+          <span class="course-desc">
+            HTML, CSS, JavaScript, Responsive Web Layouts,
+            Website Development and Live Projects.
+          </span>
+        </article>
+
+        <article class="course-card">
+          <span class="course-icon">
+            <i class="fas fa-trophy"></i>
+          </span>
+          <span class="course-title">Competitive Exam Materials</span>
+          <span class="course-desc">
+            Computer Theory Notes, MCQs, Practice Sets
+            and Previous Year Questions for Competitive Exams.
+          </span>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="enroll-area">
+      <button class="buy-now" type="button" disabled>
+        <i class="fas fa-rocket"></i>
+        ENROLL NOW & BUILD YOUR FUTURE!
+      </button>
+      <p>Learn Today • Grow Every Day • Succeed Tomorrow</p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-brand">NAMAMI DIGITAL SKILLS ACADEMY</div>
+    <p>Learn. Grow. Achieve.</p>
+    <p class="creator">
+      Designed & Developed by Pawan Soni
+    </p>
+    <p>Empowering Students Through Digital Education</p>
+  </footer>
+
+  <!-- Install App Button -->
+  <div id="install-banner">
+    <button id="install-btn" type="button">
+      <i class="fas fa-mobile-screen-button"></i>
+      Install Academy App
     </button>
   </div>
-<br><br><br><br><br><br>
-  <div class="watermark">
-    Creator - Pawan Soni &nbsp; | &nbsp; Powered by Chitragupt Academy
-  </div>
+
   <script>
+    // Course passwords and destination codes
     const passwordToCourse = {
       "7067": "bcc",
       "706": "advanced",
@@ -478,11 +1049,15 @@
       "1190": "exams"
     };
 
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
+    // Student login
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      const name = document.getElementById('studentId').value.trim();
-      const pass = document.getElementById('password').value.trim();
-      const errorMsg = document.getElementById('errorMsg');
+
+      const name = document.getElementById("studentId").value.trim();
+      const pass = document.getElementById("password").value.trim();
+      const errorMsg = document.getElementById("errorMsg");
+
+      errorMsg.textContent = "";
 
       if (!name) {
         errorMsg.textContent = "Please enter your name.";
@@ -490,58 +1065,75 @@
       }
 
       const courseCode = passwordToCourse[pass];
+
       if (courseCode) {
-        localStorage.setItem('studentName', name);
-        localStorage.setItem('courseAccess', courseCode);
-        window.location.href = "home.html";
+        try {
+          localStorage.setItem("studentName", name);
+          localStorage.setItem("courseAccess", courseCode);
+          window.location.href = "home.html";
+        } catch (error) {
+          errorMsg.textContent =
+            "Unable to save login information. Please enable browser storage.";
+        }
       } else {
-        errorMsg.textContent = "Incorrect password! Please try again.";
+        errorMsg.textContent =
+          "Incorrect password! Please check your course password and try again.";
       }
     });
 
-    // Security: Disable right-click and keys
-    document.addEventListener("contextmenu", e => e.preventDefault());
-    document.addEventListener("keydown", function(e) {
-      if (
-        (e.ctrlKey && ['c', 'x', 'v', 'u', 's', 'p', 'i', 'j'].includes(e.key.toLowerCase())) ||
-        ['F12', 'PrintScreen'].includes(e.key)
-      ) {
-        e.preventDefault();
-        alert("Function disabled");
+    // Show / hide password
+    const passwordInput = document.getElementById("password");
+    const togglePassword = document.getElementById("togglePassword");
+
+    togglePassword.addEventListener("click", function() {
+      const isHidden = passwordInput.type === "password";
+      passwordInput.type = isHidden ? "text" : "password";
+
+      togglePassword.innerHTML = isHidden
+        ? '<i class="fas fa-eye-slash"></i>'
+        : '<i class="fas fa-eye"></i>';
+
+      togglePassword.setAttribute(
+        "aria-label",
+        isHidden ? "Hide password" : "Show password"
+      );
+    });
+
+    // PWA installation
+    let deferredPrompt = null;
+
+    const installBanner = document.getElementById("install-banner");
+    const installBtn = document.getElementById("install-btn");
+
+    window.addEventListener("beforeinstallprompt", function(e) {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBanner.style.display = "block";
+    });
+
+    installBtn.addEventListener("click", async function() {
+      if (!deferredPrompt) {
+        return;
       }
+
+      deferredPrompt.prompt();
+
+      try {
+        await deferredPrompt.userChoice;
+      } catch (error) {
+        console.error("Install prompt error:", error);
+      }
+
+      deferredPrompt = null;
+      installBanner.style.display = "none";
+    });
+
+    window.addEventListener("appinstalled", function() {
+      installBanner.style.display = "none";
+      deferredPrompt = null;
     });
   </script>
 
-<script>
-let deferredPrompt;
-const installBanner = document.getElementById('install-banner');
-const installBtn = document.getElementById('install-btn');
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  // Browser ko default popup dikhane se rokna
-  e.preventDefault();
-  deferredPrompt = e;
-  // Apna custom button dikhana
-  installBanner.style.display = 'block';
-
-  installBtn.addEventListener('click', () => {
-    // Button click hone par install prompt dikhana
-    installBanner.style.display = 'none';
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User ne app install kar li');
-      }
-      deferredPrompt = null;
-    });
-  });
-});
-
-// App install hone ke baad button chhupa dena
-window.addEventListener('appinstalled', () => {
-  installBanner.style.display = 'none';
-});
-</script>
-  
 </body>
 </html>
+```
