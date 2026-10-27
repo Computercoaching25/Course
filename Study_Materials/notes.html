@@ -1,0 +1,988 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1746a2">
+  <title>Course Notes & Videos | Namami Digital Skills Academy</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --blue: #1746a2;
+      --blue-dark: #102e70;
+      --blue-light: #eaf1ff;
+      --teal: #0d9488;
+      --teal-light: #e6fffa;
+      --text: #172554;
+      --muted: #64748b;
+      --border: #dce6f3;
+      --white: #ffffff;
+      --bg: #f4f8ff;
+      --shadow: 0 8px 25px rgba(23, 70, 162, .07);
+      --shadow-hover: 0 16px 34px rgba(23, 70, 162, .13);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 5% 0%, rgba(191, 219, 254, .55), transparent 27%),
+        radial-gradient(circle at 100% 35%, rgba(153, 246, 228, .24), transparent 25%),
+        var(--bg);
+    }
+
+    /* Academy header */
+    .topbar {
+      background: rgba(255, 255, 255, .92);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(15, 23, 42, .035);
+    }
+
+    .topbar-inner {
+      width: min(1240px, 100%);
+      margin: 0 auto;
+      padding: 17px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      min-width: 0;
+    }
+
+    .logo-wrap {
+      width: 59px;
+      height: 59px;
+      flex: 0 0 59px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 2px solid #dbeafe;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(23, 70, 162, .1);
+    }
+
+    .logo-wrap img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .logo-fallback {
+      display: none;
+      color: var(--blue);
+      font-size: 1.7rem;
+    }
+
+    .brand-name {
+      margin: 0;
+      color: var(--blue-dark);
+      font-size: clamp(.84rem, 2vw, 1.12rem);
+      font-weight: 900;
+      letter-spacing: .35px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .brand-location {
+      margin: 4px 0 0;
+      color: var(--teal);
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: 1.15px;
+    }
+
+    .portal-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 15px;
+      color: var(--blue);
+      background: var(--blue-light);
+      border: 1px solid #d5e3ff;
+      border-radius: 999px;
+      font-size: .76rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .portal-label i {
+      color: var(--teal);
+    }
+
+    /* Welcome section */
+    .hero {
+      width: min(1160px, 100%);
+      margin: 0 auto;
+      padding: 42px 24px 27px;
+      text-align: center;
+      animation: fadeDown .65s ease both;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border: 1px solid #cfe0ff;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--blue);
+      font-size: .73rem;
+      font-weight: 850;
+      letter-spacing: 1.2px;
+      box-shadow: 0 3px 12px rgba(23, 70, 162, .045);
+    }
+
+    .eyebrow i {
+      color: var(--teal);
+    }
+
+    .hero h1 {
+      margin: 20px 0 12px;
+      color: var(--blue-dark);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      letter-spacing: -1.8px;
+      line-height: 1.17;
+    }
+
+    .hero h1 span {
+      color: var(--teal);
+    }
+
+    .hero-description {
+      max-width: 670px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: .97rem;
+      line-height: 1.85;
+    }
+
+    .hero-features {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 11px;
+      margin-top: 23px;
+    }
+
+    .feature-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .9);
+      color: #334155;
+      font-size: .79rem;
+      font-weight: 750;
+    }
+
+    .feature-pill i {
+      color: var(--teal);
+    }
+
+    /* Main course dashboard */
+    .main {
+      width: min(1240px, 100%);
+      margin: 0 auto;
+      padding: 16px 24px 54px;
+    }
+
+    .section-heading {
+      margin: 0 0 7px;
+      color: var(--blue-dark);
+      font-size: 1.55rem;
+      font-weight: 900;
+      letter-spacing: -.5px;
+    }
+
+    .section-description {
+      margin: 0;
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.7;
+    }
+
+    .dashboard-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 8px 0 22px;
+    }
+
+    .course-total {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border: 1px solid #bcece5;
+      border-radius: 12px;
+      background: var(--teal-light);
+      color: #0f766e;
+      font-size: .8rem;
+      font-weight: 850;
+    }
+
+    .course-total i {
+      font-size: .95rem;
+    }
+
+    /* Two resource sections */
+    .resource-section {
+      margin-top: 24px;
+      padding: 23px;
+      border: 1px solid var(--border);
+      border-radius: 23px;
+      background: rgba(255, 255, 255, .88);
+      box-shadow: var(--shadow);
+      animation: fadeUp .65s ease both;
+    }
+
+    .resource-section.videos-section {
+      animation-delay: .1s;
+    }
+
+    .resource-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #e8eef7;
+    }
+
+    .resource-heading-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 51px;
+      height: 51px;
+      flex: 0 0 51px;
+      border-radius: 16px;
+      background: var(--blue-light);
+      color: var(--blue);
+      font-size: 1.35rem;
+    }
+
+    .videos-section .resource-heading-icon {
+      background: var(--teal-light);
+      color: var(--teal);
+    }
+
+    .resource-heading h3 {
+      margin: 0;
+      color: var(--blue-dark);
+      font-size: 1.22rem;
+      font-weight: 900;
+    }
+
+    .resource-heading p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: .79rem;
+      line-height: 1.5;
+    }
+
+    .resource-count {
+      margin-left: auto;
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #f8fbff;
+      color: #64748b;
+      font-size: .72rem;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    /* Modern individual course cards */
+    .links {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .course-link {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 171px;
+      padding: 17px;
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid #e1e9f5;
+      border-radius: 17px;
+      background: #fff;
+      box-shadow: 0 3px 12px rgba(15, 23, 42, .025);
+      opacity: .78;
+      pointer-events: none;
+      cursor: not-allowed;
+      transition: transform .22s ease, box-shadow .22s ease,
+                  border-color .22s ease, background .22s ease;
+    }
+
+    .course-link::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: #cbd5e1;
+    }
+
+    .course-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .course-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      flex: 0 0 38px;
+      border-radius: 12px;
+      background: #f1f5f9;
+      color: #64748b;
+      font-size: .79rem;
+      font-weight: 900;
+    }
+
+    .course-end {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 33px;
+      height: 33px;
+      flex: 0 0 33px;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      background: #f8fafc;
+      color: #94a3b8;
+      font-size: .85rem;
+    }
+
+    .course-name {
+      display: block;
+      margin-top: 15px;
+      color: #334155;
+      font-size: .88rem;
+      font-weight: 850;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .course-type {
+      display: block;
+      margin-top: 3px;
+      color: #94a3b8;
+      font-size: .72rem;
+      font-weight: 600;
+    }
+
+    .course-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 15px;
+    }
+
+    .access-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #b45309;
+      font-size: .71rem;
+      font-weight: 850;
+    }
+
+    .action-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #94a3b8;
+      font-size: .72rem;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .course-link .lock-open,
+    .course-link .action-open {
+      display: none;
+    }
+
+    /* Unlocked cards */
+    .course-link.unlocked {
+      opacity: 1;
+      pointer-events: auto;
+      cursor: pointer;
+      border-color: #c6eee7;
+      background: linear-gradient(145deg, #ffffff 55%, #f0fdfa 100%);
+    }
+
+    .course-link.unlocked::before {
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+    }
+
+    .course-link.unlocked .course-number {
+      background: var(--blue-light);
+      color: var(--blue);
+    }
+
+    .course-link.unlocked .course-name {
+      color: var(--blue-dark);
+    }
+
+    .course-link.unlocked .course-end {
+      background: var(--teal-light);
+      border-color: #bcece5;
+      color: var(--teal);
+    }
+
+    .course-link.unlocked .access-status {
+      color: #0f766e;
+    }
+
+    .course-link.unlocked .lock-closed,
+    .course-link.unlocked .action-locked {
+      display: none;
+    }
+
+    .course-link.unlocked .lock-open,
+    .course-link.unlocked .action-open {
+      display: inline;
+    }
+
+    .course-link.unlocked .action-label {
+      color: var(--teal);
+    }
+
+    .course-link.unlocked:hover {
+      transform: translateY(-5px);
+      border-color: #75d9cd;
+      box-shadow: var(--shadow-hover);
+    }
+
+    .course-link:focus-visible,
+    .back-btn:focus-visible {
+      outline: 3px solid #0d9488;
+      outline-offset: 3px;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 10px;
+      padding: 29px 20px 26px;
+      border-top: 1px solid var(--border);
+      background: #fff;
+      text-align: center;
+    }
+
+    .footer-brand {
+      margin: 0 0 7px;
+      color: var(--blue-dark);
+      font-size: .98rem;
+      font-weight: 900;
+      letter-spacing: .35px;
+    }
+
+    .footer-text {
+      margin: 0;
+      color: var(--muted);
+      font-size: .8rem;
+      line-height: 1.8;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      margin-top: 17px;
+      padding: 12px 22px;
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(105deg, var(--blue), #2563eb 55%, var(--teal));
+      color: #fff;
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 850;
+      box-shadow: 0 6px 17px rgba(23, 70, 162, .18);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 9px 22px rgba(23, 70, 162, .24);
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 1000px) {
+      .links {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 650px) {
+      .topbar-inner {
+        padding: 14px;
+        gap: 10px;
+      }
+
+      .brand {
+        gap: 9px;
+      }
+
+      .logo-wrap {
+        width: 46px;
+        height: 46px;
+        flex-basis: 46px;
+      }
+
+      .brand-location {
+        font-size: .57rem;
+        letter-spacing: .45px;
+      }
+
+      .portal-label {
+        padding: 8px 9px;
+        gap: 5px;
+        font-size: .62rem;
+      }
+
+      .hero {
+        padding: 34px 16px 23px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .hero-description {
+        font-size: .88rem;
+      }
+
+      .feature-pill {
+        padding: 9px 10px;
+        font-size: .71rem;
+      }
+
+      .main {
+        padding: 12px 13px 39px;
+      }
+
+      .dashboard-heading {
+        align-items: flex-start;
+      }
+
+      .section-heading {
+        font-size: 1.35rem;
+      }
+
+      .resource-section {
+        padding: 16px 12px;
+        margin-top: 18px;
+        border-radius: 18px;
+      }
+
+      .resource-heading {
+        gap: 10px;
+      }
+
+      .resource-heading-icon {
+        width: 43px;
+        height: 43px;
+        flex-basis: 43px;
+        border-radius: 13px;
+        font-size: 1.1rem;
+      }
+
+      .resource-heading h3 {
+        font-size: 1.04rem;
+      }
+
+      .resource-heading p {
+        font-size: .69rem;
+      }
+
+      .resource-count {
+        padding: 6px 7px;
+        font-size: .63rem;
+      }
+
+      .links {
+        grid-template-columns: 1fr;
+        gap: 11px;
+      }
+
+      .course-link {
+        min-height: 148px;
+        padding: 14px;
+      }
+
+      .course-name {
+        margin-top: 11px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    @media print {
+      body {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo-wrap">
+          <img
+            src="../logo.png"
+            alt="Namami Digital Skills Academy Logo"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+          >
+          <i class="fas fa-graduation-cap logo-fallback" aria-hidden="true"></i>
+        </div>
+
+        <div>
+          <p class="brand-name">NAMAMI DIGITAL SKILLS ACADEMY</p>
+          <p class="brand-location">SOHAGPUR · PRACTICAL COMPUTER TRAINING</p>
+        </div>
+      </div>
+
+      <div class="portal-label">
+        <i class="fas fa-circle-check" aria-hidden="true"></i>
+        LEARNING PORTAL
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">
+      <i class="fas fa-sparkles" aria-hidden="true"></i>
+      YOUR PERSONAL LEARNING HUB
+    </div>
+
+    <h1>
+      Learn. Practice.<br>
+      <span>Achieve More.</span>
+    </h1>
+
+    <p class="hero-description">
+      Everything you need for your course, in one place.
+      Access your study notes and video lessons to improve your knowledge
+      and practical computer skills.
+    </p>
+
+    <div class="hero-features">
+      <div class="feature-pill">
+        <i class="fas fa-book-open" aria-hidden="true"></i>
+        Study Notes
+      </div>
+      <div class="feature-pill">
+        <i class="fas fa-circle-play" aria-hidden="true"></i>
+        Video Lessons
+      </div>
+      <div class="feature-pill">
+        <i class="fas fa-lock" aria-hidden="true"></i>
+        Course Access
+      </div>
+    </div>
+  </section>
+
+  <main class="main">
+
+    <div class="dashboard-heading">
+      <div>
+        <h2 class="section-heading">Your Course Resources</h2>
+        <p class="section-description">
+          Choose your course and continue learning.
+        </p>
+      </div>
+
+      <div class="course-total">
+        <i class="fas fa-layer-group" aria-hidden="true"></i>
+        <span id="courseCount">9 Courses</span>
+      </div>
+    </div>
+
+    <section class="resource-section notes-section">
+      <div class="resource-heading">
+        <div class="resource-heading-icon">
+          <i class="fas fa-book-open" aria-hidden="true"></i>
+        </div>
+
+        <div>
+          <h3>Course Notes</h3>
+          <p>Read, revise and strengthen your concepts</p>
+        </div>
+
+        <span class="resource-count">09 COURSES</span>
+      </div>
+
+      <div class="links notes-links"></div>
+    </section>
+
+    <section class="resource-section videos-section">
+      <div class="resource-heading">
+        <div class="resource-heading-icon">
+          <i class="fas fa-circle-play" aria-hidden="true"></i>
+        </div>
+
+        <div>
+          <h3>Course Videos</h3>
+          <p>Learn through demonstrations and visual lessons</p>
+        </div>
+
+        <span class="resource-count">09 COURSES</span>
+      </div>
+
+      <div class="links videos-links"></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p class="footer-brand">NAMAMI DIGITAL SKILLS ACADEMY</p>
+
+    <p class="footer-text">
+      © <span id="year"></span> Pawan Soni<br>
+      Sohagpur | Practical Computer Training
+    </p>
+
+    <a href="javascript:history.back()" class="back-btn">
+      <i class="fas fa-arrow-left" aria-hidden="true"></i>
+      Back
+    </a>
+  </footer>
+
+  <script>
+    // Original course-to-notes page mapping preserved
+    const coursePages = {
+      "bcc": "Basic/basic.html",
+      "advanced": "Advance_Ms/advance.html",
+      "cpct": "CPCT/cpct.html",
+      "internet": "Internet.html",
+      "tally": "Tally.html",
+      "graphic": "Graphic.html",
+      "powerbi": "PowerBI.html",
+      "webdesign": "WebDesign.html",
+      "exams": "Exams.html"
+    };
+
+    // Original course-to-video page mapping preserved
+    const videoPages = {
+      "bcc": "Videos/basic_videos.html",
+      "advanced": "Advance_Ms/advance_videos.html",
+      "cpct": "CPCT/cpct_videos.html",
+      "internet": "Internet_videos.html",
+      "tally": "Tally_videos.html",
+      "graphic": "Graphic_videos.html",
+      "powerbi": "PowerBI_videos.html",
+      "webdesign": "WebDesign_videos.html",
+      "exams": "Exams_videos.html"
+    };
+
+    // Original course IDs, labels and order preserved
+    const courseOrder = [
+      { id: "bcc", label: "Basic Computer Course" },
+      { id: "advanced", label: "Advanced Computer Course" },
+      { id: "cpct", label: "CPCT Preparation" },
+      { id: "internet", label: "Internet & Email" },
+      { id: "tally", label: "Tally with GST" },
+      { id: "graphic", label: "Graphic Design" },
+      { id: "powerbi", label: "MS Power BI" },
+      { id: "webdesign", label: "Web Designing" },
+      { id: "exams", label: "Competitive Exams" }
+    ];
+
+    // Existing security-related restrictions preserved
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    document.addEventListener('keydown', function(e) {
+      if (
+        (e.ctrlKey && ['u', 'U', 'c', 'C', 's', 'S'].includes(e.key)) ||
+        (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+        e.key === 'F12'
+      ) {
+        e.preventDefault();
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Keep the original localStorage access key
+      const access = localStorage.getItem('courseAccess');
+
+      const notesSection = document.querySelector('.notes-links');
+      const videosSection = document.querySelector('.videos-links');
+
+      notesSection.innerHTML = '';
+      videosSection.innerHTML = '';
+
+      document.getElementById('courseCount').textContent =
+        courseOrder.length + ' Courses';
+
+      // Render all course cards in the original order
+      courseOrder.forEach(function(course, index) {
+
+        function createCourseLink(type, targetPage, section) {
+          const link = document.createElement('a');
+          const isNotes = type === 'notes';
+          const itemLabel = isNotes ? 'Notes' : 'Videos';
+
+          link.className = 'course-link';
+          link.id = type + '-' + course.id;
+          link.href = targetPage || '#';
+
+          link.innerHTML = `
+            <div class="course-card-top">
+              <span class="course-number">
+                ${String(index + 1).padStart(2, '0')}
+              </span>
+
+              <span class="course-end">
+                <i class="fas fa-lock lock-closed" aria-hidden="true"></i>
+                <i class="fas fa-unlock lock-open" aria-hidden="true"></i>
+                <i class="fas fa-arrow-up-right-from-square action-open"
+                   aria-hidden="true"></i>
+              </span>
+            </div>
+
+            <span class="course-name">
+              ${course.label}
+              <span class="course-type">${itemLabel}</span>
+            </span>
+
+            <div class="course-bottom">
+              <span class="access-status">
+                <i class="fas fa-lock lock-closed" aria-hidden="true"></i>
+                <i class="fas fa-circle-check lock-open" aria-hidden="true"></i>
+                <span class="status-text">Locked</span>
+              </span>
+
+              <span class="action-label">
+                <span class="action-locked">Restricted</span>
+                <span class="action-open">Open <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+              </span>
+            </div>
+          `;
+
+          if (access === course.id) {
+            link.classList.add('unlocked');
+            link.tabIndex = 0;
+            link.setAttribute(
+              'aria-label',
+              course.label + ' ' + itemLabel
+            );
+
+            link.querySelector('.status-text').textContent = 'Unlocked';
+
+            link.addEventListener('click', function(e) {
+              // Preserve the existing fallback alert for missing page paths.
+              if (!targetPage || targetPage === '#') {
+                e.preventDefault();
+                alert(isNotes
+                  ? 'Course notes coming soon!'
+                  : 'Course videos coming soon!');
+              }
+            });
+
+          } else {
+            link.tabIndex = -1;
+            link.setAttribute('aria-disabled', 'true');
+
+            link.addEventListener('click', function(e) {
+              e.preventDefault();
+              alert('This course is locked for your account.');
+            });
+          }
+
+          section.appendChild(link);
+        }
+
+        createCourseLink(
+          'notes',
+          coursePages[course.id],
+          notesSection
+        );
+
+        createCourseLink(
+          'videos',
+          videoPages[course.id],
+          videosSection
+        );
+      });
+    });
+
+    // Current year
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
