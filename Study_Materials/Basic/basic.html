@@ -1,0 +1,604 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Computer Notes | Namami Digital Skills Academy</title>
+  <meta name="theme-color" content="#123b70">
+
+  <style>
+    :root {
+      --blue: #123b70;
+      --dark-blue: #0b2447;
+      --teal: #0d9488;
+      --light-teal: #e0f7f4;
+      --text: #243247;
+      --muted: #68778b;
+      --border: #e4ebf3;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, #e1f7f4, transparent 34%),
+        linear-gradient(135deg, #f4f8fd, #edf5f9);
+      min-height: 100vh;
+    }
+
+    .top-line {
+      height: 5px;
+      background: linear-gradient(90deg, var(--blue), var(--teal), #63d4c8);
+    }
+
+    header {
+      position: relative;
+      overflow: hidden;
+      padding: 34px 18px 32px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg, var(--dark-blue), var(--blue));
+      border-radius: 0 0 28px 28px;
+      box-shadow: 0 12px 30px rgba(18, 59, 112, 0.16);
+    }
+
+    header::before,
+    header::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    header::before {
+      width: 230px;
+      height: 230px;
+      top: -135px;
+      left: -65px;
+    }
+
+    header::after {
+      width: 280px;
+      height: 280px;
+      right: -100px;
+      bottom: -205px;
+    }
+
+    .brand {
+      position: relative;
+      z-index: 1;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    /* Circular academy logo */
+    .logo-wrap {
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 16px;
+      padding: 4px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid rgba(189, 246, 237, 0.9);
+      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #academyLogo {
+      display: none;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+      background: #ffffff;
+    }
+
+    #logoFallback {
+      display: block;
+      font-size: 39px;
+      line-height: 1;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 13px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.09);
+      color: #bdf6ed;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(25px, 4vw, 39px);
+      line-height: 1.25;
+      letter-spacing: 0.5px;
+      font-weight: 850;
+    }
+
+    header p {
+      margin: 12px 0 0;
+      color: #e0eaf7;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .location {
+      margin-top: 12px;
+      color: #bdf6ed;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    main {
+      width: min(100% - 32px, 960px);
+      margin: 32px auto 45px;
+    }
+
+    .intro {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 22px;
+    }
+
+    .intro h2 {
+      margin: 0;
+      font-size: clamp(22px, 3vw, 29px);
+      color: var(--dark-blue);
+      letter-spacing: -0.5px;
+    }
+
+    .intro p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .notes-count {
+      flex-shrink: 0;
+      padding: 10px 13px;
+      background: white;
+      color: var(--blue);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 800;
+      box-shadow: 0 4px 12px rgba(15, 43, 77, 0.04);
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .note-card {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      min-width: 0;
+      padding: 21px;
+      background: var(--white);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      text-decoration: none;
+      box-shadow: 0 5px 18px rgba(15, 43, 77, 0.045);
+      transition: transform 0.22s ease, border-color 0.22s ease,
+                  box-shadow 0.22s ease;
+    }
+
+    .note-card:hover,
+    .note-card:focus-visible {
+      transform: translateY(-4px);
+      border-color: #8bd9d0;
+      box-shadow: 0 13px 27px rgba(18, 59, 112, 0.10);
+      outline: none;
+    }
+
+    .note-icon {
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px;
+      background: #edf4ff;
+      color: var(--blue);
+      font-size: 25px;
+    }
+
+    .note-card:nth-child(even) .note-icon {
+      color: #087f75;
+      background: var(--light-teal);
+    }
+
+    .note-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .note-info h3 {
+      margin: 0;
+      color: var(--dark-blue);
+      font-size: 16px;
+      line-height: 1.45;
+      font-weight: 800;
+    }
+
+    .note-info p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .arrow {
+      flex-shrink: 0;
+      color: var(--teal);
+      font-size: 25px;
+      font-weight: 700;
+      transition: transform 0.2s ease;
+    }
+
+    .note-card:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    .bottom-panel {
+      margin-top: 26px;
+      padding: 19px 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: linear-gradient(120deg, #e9f4ff, #e4f8f5);
+      border: 1px solid #d9eeef;
+      border-radius: 17px;
+    }
+
+    .bottom-icon {
+      width: 43px;
+      height: 43px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 13px;
+      background: white;
+      font-size: 22px;
+    }
+
+    .bottom-panel h3 {
+      margin: 0;
+      color: var(--dark-blue);
+      font-size: 14px;
+    }
+
+    .bottom-panel p {
+      margin: 5px 0 0;
+      color: #586a7d;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 16px 28px;
+      background: rgba(255, 255, 255, 0.75);
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .footer-brand {
+      color: var(--blue);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      margin-top: 15px;
+      padding: 11px 21px;
+      background: var(--blue);
+      color: white;
+      text-decoration: none;
+      border: 1px solid var(--blue);
+      border-radius: 11px;
+      font-weight: 750;
+      font-size: 13px;
+      box-shadow: 0 5px 12px rgba(18, 59, 112, 0.15);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background: var(--teal);
+      border-color: var(--teal);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding: 29px 15px 27px;
+        border-radius: 0 0 23px 23px;
+      }
+
+      .logo-wrap {
+        width: 80px;
+        height: 80px;
+      }
+
+      main {
+        width: min(100% - 24px, 960px);
+        margin-top: 25px;
+      }
+
+      .intro {
+        align-items: flex-start;
+      }
+
+      .notes-count {
+        padding: 8px 10px;
+        font-size: 11px;
+      }
+
+      .notes-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .note-card {
+        padding: 17px;
+        gap: 13px;
+        border-radius: 15px;
+      }
+
+      .note-icon {
+        width: 49px;
+        height: 49px;
+        font-size: 22px;
+        border-radius: 14px;
+      }
+
+      .note-info h3 {
+        font-size: 15px;
+      }
+
+      .bottom-panel {
+        padding: 16px;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+
+    ::selection {
+      background: transparent;
+    }
+  </style>
+
+  <script>
+    // Existing browser restrictions retained.
+    document.addEventListener("contextmenu", function(e) {
+      e.preventDefault();
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (
+        (e.ctrlKey && ["u", "U", "c", "C", "s", "S"].includes(e.key)) ||
+        (e.ctrlKey && e.shiftKey && ["i", "I"].includes(e.key)) ||
+        e.key === "F12"
+      ) {
+        e.preventDefault();
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <div class="top-line"></div>
+
+  <header>
+    <div class="brand">
+
+      <div class="logo-wrap">
+        <img id="academyLogo" src="" alt="Namami Digital Skills Academy Logo">
+        <span id="logoFallback">🎓</span>
+      </div>
+
+      <div class="eyebrow">Learn • Practice • Grow</div>
+
+      <h1>NAMAMI DIGITAL<br>SKILLS ACADEMY</h1>
+
+      <p>
+        Computer Learning Notes<br>
+        Your learning journey starts here.
+      </p>
+
+      <div class="location">
+        SOHAGPUR · PRACTICAL COMPUTER TRAINING
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div>
+        <h2>Computer Notes</h2>
+        <p>Choose a topic below to open your study material.</p>
+      </div>
+
+      <div class="notes-count">📚 5 Topics</div>
+    </section>
+
+    <section class="notes-grid" aria-label="Computer study notes">
+
+      <a class="note-card" href="Introduction/Introduction of Computer.html">
+        <div class="note-icon">💻</div>
+        <div class="note-info">
+          <h3>Introduction of Computer</h3>
+          <p>Computer fundamentals and introduction</p>
+        </div>
+        <span class="arrow" aria-hidden="true">›</span>
+      </a>
+
+      <a class="note-card" href="Basic_Parts/basic.html">
+        <div class="note-icon">🖥️</div>
+        <div class="note-info">
+          <h3>Basic Parts</h3>
+          <p>Learn the main parts of a computer</p>
+        </div>
+        <span class="arrow" aria-hidden="true">›</span>
+      </a>
+
+      <a class="note-card" href="Acc/acs.html">
+        <div class="note-icon">⌨️</div>
+        <div class="note-info">
+          <h3>Computer Accessories</h3>
+          <p>Explore common computer accessories</p>
+        </div>
+        <span class="arrow" aria-hidden="true">›</span>
+      </a>
+
+      <a class="note-card" href="MsOffice/ms_office.html">
+        <div class="note-icon">📄</div>
+        <div class="note-info">
+          <h3>MS Office</h3>
+          <p>Word, Excel, PowerPoint and more</p>
+        </div>
+        <span class="arrow" aria-hidden="true">›</span>
+      </a>
+
+      <a class="note-card" href="basic_pre/part.html">
+        <div class="note-icon">📝</div>
+        <div class="note-info">
+          <h3>Exam Preparation</h3>
+          <p>Prepare with computer exam notes</p>
+        </div>
+        <span class="arrow" aria-hidden="true">›</span>
+      </a>
+
+    </section>
+
+    <section class="bottom-panel">
+      <div class="bottom-icon">🎯</div>
+      <div>
+        <h3>Build Your Computer Skills</h3>
+        <p>
+          Learn step by step, revise your notes, and keep practising
+          to strengthen your computer knowledge.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">NAMAMI DIGITAL SKILLS ACADEMY</div>
+    Sohagpur | Practical Computer Training<br>
+    &copy; <span id="year"></span> Pawan Soni. All rights reserved.
+
+    <br>
+
+    <a href="javascript:history.back()" class="back-btn">
+      <span aria-hidden="true">←</span> Back
+    </a>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    /*
+      Logo path helper:
+      Tries common locations relative to the current HTML page.
+      IMPORTANT: the logo file must exist at one of these paths.
+    */
+    (function () {
+      const logo = document.getElementById("academyLogo");
+      const fallback = document.getElementById("logoFallback");
+
+      const paths = [
+        "../logo.png",
+        "./logo.png",
+        "logo.png",
+        "../images/logo.png",
+        "./images/logo.png",
+        "../assets/logo.png",
+        "./assets/logo.png",
+        "../../logo.png",
+        "../Logo.png",
+        "./Logo.png",
+        "../logo.jpg",
+        "./logo.jpg",
+        "../logo.jpeg",
+        "./logo.jpeg"
+      ];
+
+      let index = 0;
+
+      function tryNextLogo() {
+        if (index >= paths.length) {
+          logo.style.display = "none";
+          fallback.style.display = "block";
+          console.warn(
+            "Logo file was not found. Check the logo filename and folder."
+          );
+          return;
+        }
+
+        const currentPath = paths[index++];
+
+        logo.onload = function () {
+          logo.style.display = "block";
+          fallback.style.display = "none";
+        };
+
+        logo.onerror = function () {
+          logo.removeAttribute("src");
+          tryNextLogo();
+        };
+
+        logo.src = currentPath;
+      }
+
+      tryNextLogo();
+    })();
+  </script>
+</body>
+</html>
