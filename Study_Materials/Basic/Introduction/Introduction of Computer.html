@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Computer Fundamentals | Namami Digital Skills Academy</title>
+  <meta name="theme-color" content="#102b50">
+
+  <link rel="icon" href="https://img.icons8.com/color/48/computer.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #102b50;
+      --blue: #1d4ed8;
+      --teal: #0d9488;
+      --text: #203047;
+      --muted: #728096;
+      --line: #e3eaf2;
+      --white: #ffffff;
+      --bg: #f4f7fb;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: "Inter", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 5% 0%, #d9f5f0 0%, transparent 28%),
+        var(--bg);
+    }
+
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .topbar {
+      height: 6px;
+      background: linear-gradient(90deg, #102b50, #2563eb, #0d9488, #72e0cc);
+    }
+
+    /* Academy identity area */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 28px 20px 42px;
+      background: linear-gradient(125deg, #102b50 0%, #174477 60%, #087f80 100%);
+      color: white;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 390px;
+      height: 390px;
+      right: -120px;
+      top: -245px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 35px rgba(255,255,255,.035),
+        0 0 0 75px rgba(255,255,255,.025);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      left: -100px;
+      bottom: -110px;
+      border-radius: 50%;
+      background: rgba(87, 226, 205, .12);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 1100px);
+      margin: auto;
+      display: flex;
+      align-items: center;
+      gap: 23px;
+    }
+
+    .logo-frame {
+      width: 88px;
+      height: 88px;
+      flex: 0 0 88px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      border: 2px solid rgba(255,255,255,.75);
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 8px 25px rgba(0,0,0,.18);
+      overflow: hidden;
+    }
+
+    #academyLogo {
+      display: none;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+      background: white;
+    }
+
+    #logoFallback {
+      display: block;
+      font-size: 37px;
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-tag {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,.25);
+      color: #baf8eb;
+      background: rgba(255,255,255,.08);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
+    }
+
+    .brand-copy h1 {
+      margin: 10px 0 5px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(23px, 3.5vw, 35px);
+      line-height: 1.2;
+      letter-spacing: -.7px;
+      font-weight: 800;
+    }
+
+    .brand-copy p {
+      margin: 0;
+      color: #dbeafe;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .hero-label {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 1100px);
+      margin: 25px auto 0;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.18);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-label strong {
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    .hero-label span {
+      color: #c5f6ec;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* Main page */
+    .container {
+      width: min(100% - 36px, 1100px);
+      margin: 34px auto 42px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 23px;
+    }
+
+    .section-heading .overline {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--teal);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      color: var(--navy);
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(23px, 3vw, 31px);
+      letter-spacing: -.8px;
+    }
+
+    .section-heading p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .topic-total {
+      flex-shrink: 0;
+      padding: 10px 14px;
+      border: 1px solid #d5e9e7;
+      border-radius: 10px;
+      background: #eaf8f5;
+      color: #087f75;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    /* Different card pattern */
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .topic-card {
+      --card-accent: #2563eb;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 225px;
+      padding: 22px;
+      overflow: hidden;
+      color: inherit;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(24, 48, 82, .035);
+      transition: transform .23s ease, box-shadow .23s ease,
+                  border-color .23s ease;
+      animation: riseIn .6s both;
+    }
+
+    .topic-card:nth-child(2) { animation-delay: .06s; }
+    .topic-card:nth-child(3) { animation-delay: .12s; }
+    .topic-card:nth-child(4) { animation-delay: .18s; }
+    .topic-card:nth-child(5) { animation-delay: .24s; }
+    .topic-card:nth-child(6) { animation-delay: .30s; }
+
+    .topic-card:nth-child(2) { --card-accent: #0d9488; }
+    .topic-card:nth-child(3) { --card-accent: #d97706; }
+    .topic-card:nth-child(4) { --card-accent: #7c3aed; }
+    .topic-card:nth-child(5) { --card-accent: #db2777; }
+    .topic-card:nth-child(6) { --card-accent: #0891b2; }
+
+    @keyframes riseIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .topic-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--card-accent);
+      transform: scaleX(.35);
+      transform-origin: left;
+      transition: transform .25s ease;
+    }
+
+    .topic-card:hover,
+    .topic-card:focus-visible {
+      transform: translateY(-5px);
+      border-color: color-mix(in srgb, var(--card-accent) 35%, white);
+      box-shadow: 0 14px 32px rgba(24, 48, 82, .10);
+      outline: none;
+    }
+
+    .topic-card:hover::before,
+    .topic-card:focus-visible::before {
+      transform: scaleX(1);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .topic-icon {
+      width: 54px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--card-accent) 10%, white);
+      color: var(--card-accent);
+      font-size: 25px;
+      transition: transform .23s ease;
+    }
+
+    .topic-card:hover .topic-icon {
+      transform: rotate(-5deg) scale(1.06);
+    }
+
+    .topic-number {
+      color: #9aa7b8;
+      font-family: "Manrope", sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .topic-card h3 {
+      margin: 19px 0 8px;
+      color: var(--navy);
+      font-family: "Manrope", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      font-weight: 800;
+    }
+
+    .topic-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.75;
+    }
+
+    .card-bottom {
+      margin-top: auto;
+      padding-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .open-label {
+      color: var(--card-accent);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+
+    .open-arrow {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9px;
+      color: white;
+      background: var(--card-accent);
+      font-size: 20px;
+      transition: transform .2s ease;
+    }
+
+    .topic-card:hover .open-arrow {
+      transform: translateX(3px);
+    }
+
+    .study-banner {
+      margin-top: 25px;
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      border: 1px solid #d6e7f2;
+      border-radius: 15px;
+      background: linear-gradient(110deg, #eaf2ff, #e5f8f4);
+    }
+
+    .study-symbol {
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border-radius: 13px;
+      font-size: 22px;
+    }
+
+    .study-banner h3 {
+      margin: 0 0 5px;
+      color: var(--navy);
+      font-family: "Manrope", sans-serif;
+      font-size: 14px;
+    }
+
+    .study-banner p {
+      margin: 0;
+      color: #5d6d80;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 24px 16px 28px;
+      text-align: center;
+      background: white;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .footer-brand {
+      color: var(--navy);
+      font-family: "Manrope", sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .footer-credit {
+      margin-top: 3px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      margin-top: 16px;
+      padding: 11px 25px;
+      border-radius: 10px;
+      background: var(--navy);
+      border: 1px solid var(--navy);
+      color: white;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .5px;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .back-btn:hover,
+    .back-btn:focus-visible {
+      background: var(--teal);
+      border-color: var(--teal);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    @media (max-width: 850px) {
+      .topic-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        padding: 24px 17px 28px;
+      }
+
+      .hero-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+
+      .logo-frame {
+        width: 80px;
+        height: 80px;
+        flex-basis: 80px;
+      }
+
+      .brand-copy h1 {
+        font-size: 25px;
+      }
+
+      .hero-label {
+        margin-top: 22px;
+        padding-top: 14px;
+        flex-direction: column;
+        text-align: center;
+        gap: 7px;
+      }
+
+      .container {
+        width: calc(100% - 26px);
+        margin-top: 27px;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+      }
+
+      .topic-total {
+        padding: 8px 10px;
+        font-size: 10px;
+      }
+
+      .topic-grid {
+        grid-template-columns: 1fr;
+        gap: 13px;
+      }
+
+      .topic-card {
+        min-height: 190px;
+        padding: 19px;
+      }
+
+      .topic-card h3 {
+        margin-top: 15px;
+      }
+
+      .study-banner {
+        align-items: flex-start;
+        padding: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    ::selection {
+      background: transparent;
+    }
+  </style>
+
+  <script>
+    // Preserve the original browser restrictions.
+    document.addEventListener("contextmenu", function(event) {
+      event.preventDefault();
+    });
+
+    document.addEventListener("copy", function(event) {
+      event.preventDefault();
+    });
+
+    document.addEventListener("cut", function(event) {
+      event.preventDefault();
+    });
+
+    document.addEventListener("paste", function(event) {
+      event.preventDefault();
+    });
+
+    document.addEventListener("dragstart", function(event) {
+      event.preventDefault();
+    });
+
+    document.addEventListener("selectstart", function(event) {
+      event.preventDefault();
+    });
+
+    document.addEventListener("keydown", function(event) {
+      const key = event.key.toLowerCase();
+
+      if (
+        event.key === "PrintScreen" ||
+        event.key === "F12" ||
+        (event.ctrlKey && ["p", "s", "u", "c"].includes(key)) ||
+        (event.ctrlKey && event.shiftKey && ["i", "j"].includes(key))
+      ) {
+        event.preventDefault();
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <div class="topbar"></div>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="logo-frame">
+        <img id="academyLogo" src="" alt="Namami Digital Skills Academy Logo">
+        <span id="logoFallback">🎓</span>
+      </div>
+
+      <div class="brand-copy">
+        <div class="brand-tag">Computer Education & Skill Development</div>
+        <h1>NAMAMI DIGITAL<br>SKILLS ACADEMY</h1>
+        <p>Learn Today • Build Skills • Grow Tomorrow</p>
+      </div>
+    </div>
+
+    <div class="hero-label">
+      <strong>COMPUTER FUNDAMENTALS</strong>
+      <span>SOHAGPUR · PRACTICAL COMPUTER TRAINING</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section-heading">
+      <div>
+        <span class="overline">Your Learning Library</span>
+        <h2>Explore Computer Topics</h2>
+        <p>Select a topic to open its notes and learning material.</p>
+      </div>
+
+      <div class="topic-total">06 TOPICS</div>
+    </section>
+
+    <section class="topic-grid" aria-label="Computer topics">
+
+      <a href="intro.html" class="topic-card">
+        <div class="card-top">
+          <div class="topic-icon">💻</div>
+          <span class="topic-number">01 / 06</span>
+        </div>
+        <h3>What is a Computer?</h3>
+        <p>Definition, history, and core concepts of computers.</p>
+        <div class="card-bottom">
+          <span class="open-label">Explore Topic</span>
+          <span class="open-arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+
+      <a href="os.html" class="topic-card">
+        <div class="card-top">
+          <div class="topic-icon">⚙️</div>
+          <span class="topic-number">02 / 06</span>
+        </div>
+        <h3>What is an Operating System?</h3>
+        <p>Definitions, functions, and examples of operating systems.</p>
+        <div class="card-bottom">
+          <span class="open-label">Explore Topic</span>
+          <span class="open-arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+
+      <a href="char.html" class="topic-card">
+        <div class="card-top">
+          <div class="topic-icon">⚡</div>
+          <span class="topic-number">03 / 06</span>
+        </div>
+        <h3>Characteristics &amp; Limitations</h3>
+        <p>Important features, strengths, and limitations of computers.</p>
+        <div class="card-bottom">
+          <span class="open-label">Explore Topic</span>
+          <span class="open-arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+
+      <a href="types.html" class="topic-card">
+        <div class="card-top">
+          <div class="topic-icon">🖥️</div>
+          <span class="topic-number">04 / 06</span>
+        </div>
+        <h3>Classification of Computer</h3>
+        <p>Computer types by size, function, and technology.</p>
+        <div class="card-bottom">
+          <span class="open-label">Explore Topic</span>
+          <span class="open-arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+
+      <a href="gen.html" class="topic-card">
+        <div class="card-top">
+          <div class="topic-icon">⏳</div>
+          <span class="topic-number">05 / 06</span>
+        </div>
+        <h3>Generation of Computers</h3>
+        <p>Evolution from the first to fifth generation with examples.</p>
+        <div class="card-bottom">
+          <span class="open-label">Explore Topic</span>
+          <span class="open-arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+
+      <a href="app.html" class="topic-card">
+        <div class="card-top">
+          <div class="topic-icon">🌐</div>
+          <span class="topic-number">06 / 06</span>
+        </div>
+        <h3>Applications in Daily Life</h3>
+        <p>How computers are used in different fields today.</p>
+        <div class="card-bottom">
+          <span class="open-label">Explore Topic</span>
+          <span class="open-arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+
+    </section>
+
+    <section class="study-banner">
+      <div class="study-symbol">📘</div>
+      <div>
+        <h3>Keep Learning, Keep Practising</h3>
+        <p>
+          Study each topic carefully, revise the important concepts,
+          and strengthen your computer knowledge step by step.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">NAMAMI DIGITAL SKILLS ACADEMY</div>
+    Sohagpur | Practical Computer Training
+    <div class="footer-credit">
+      &copy; <span id="year"></span> Pawan Soni. All rights reserved.
+    </div>
+
+    <a href="javascript:history.back()" class="back-btn">
+      <span aria-hidden="true">←</span> Back
+    </a>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    /*
+      Logo loader:
+      Tries common paths relative to this HTML file.
+      The image must exist at one of these paths.
+    */
+    (function () {
+      const logo = document.getElementById("academyLogo");
+      const fallback = document.getElementById("logoFallback");
+
+      const paths = [
+        "../logo.png",
+        "./logo.png",
+        "logo.png",
+        "../images/logo.png",
+        "./images/logo.png",
+        "../assets/logo.png",
+        "./assets/logo.png",
+        "../../logo.png",
+        "../Logo.png",
+        "./Logo.png",
+        "../logo.jpg",
+        "./logo.jpg",
+        "../logo.jpeg",
+        "./logo.jpeg"
+      ];
+
+      let index = 0;
+
+      function tryNext() {
+        if (index >= paths.length) {
+          logo.style.display = "none";
+          fallback.style.display = "block";
+          console.warn("Academy logo not found. Check its filename and location.");
+          return;
+        }
+
+        const path = paths[index++];
+
+        logo.onload = function () {
+          logo.style.display = "block";
+          fallback.style.display = "none";
+        };
+
+        logo.onerror = function () {
+          logo.removeAttribute("src");
+          tryNext();
+        };
+
+        logo.src = path;
+      }
+
+      tryNext();
+    })();
+  </script>
+</body>
+</html>

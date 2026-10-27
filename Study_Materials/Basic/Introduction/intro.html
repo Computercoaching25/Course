@@ -1,0 +1,928 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1730">
+  <title>What is a Computer? | Namami Digital Skills Academy</title>
+
+  <link rel="icon" href="https://img.icons8.com/color/48/computer.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #0b1730;
+      --navy2: #142d50;
+      --blue: #2563eb;
+      --teal: #0d9488;
+      --mint: #64e5cf;
+      --text: #24334a;
+      --muted: #68778d;
+      --line: #e4eaf2;
+      --bg: #f3f6fb;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: "Inter", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 0% 0%, #d9f5f0 0%, transparent 28%),
+        var(--bg);
+    }
+
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .topbar {
+      height: 5px;
+      background: linear-gradient(90deg, #2563eb, #20c6d7, #64e5cf);
+    }
+
+    /* Modern academy header */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 27px 20px 0;
+      color: white;
+      background: linear-gradient(125deg, #0b1730 0%, #143c69 62%, #087f80 100%);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 360px;
+      height: 360px;
+      right: -110px;
+      top: -225px;
+      box-shadow: 0 0 0 35px rgba(255,255,255,.035),
+                  0 0 0 75px rgba(255,255,255,.025);
+    }
+
+    .hero::after {
+      width: 190px;
+      height: 190px;
+      left: -120px;
+      bottom: -120px;
+      background: rgba(100,229,207,.07);
+    }
+
+    .hero-inner,
+    .hero-bottom {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 1100px);
+      margin: auto;
+    }
+
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      gap: 19px;
+      padding-bottom: 26px;
+    }
+
+    .logo-frame {
+      width: 82px;
+      height: 82px;
+      min-width: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,.82);
+      background: white;
+      box-shadow: 0 8px 24px rgba(0,0,0,.23);
+    }
+
+    #academyLogo {
+      width: 100%;
+      height: 100%;
+      padding: 4px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: white;
+    }
+
+    #logoFallback {
+      display: none;
+      font-size: 34px;
+    }
+
+    .brand-tag {
+      display: inline-block;
+      padding: 5px 9px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 6px;
+      color: #baf8eb;
+      background: rgba(255,255,255,.08);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .brand-copy h1 {
+      margin: 9px 0 5px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(22px, 3.5vw, 32px);
+      line-height: 1.2;
+      letter-spacing: -.6px;
+      font-weight: 800;
+    }
+
+    .brand-copy p {
+      margin: 0;
+      color: #dbeafe;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .hero-bottom {
+      padding: 15px 0;
+      border-top: 1px solid rgba(255,255,255,.17);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-bottom strong {
+      font-size: 12px;
+      letter-spacing: 1.2px;
+    }
+
+    .hero-bottom span {
+      color: #c5f6ec;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* Page introduction */
+    .page-intro {
+      width: min(100% - 32px, 1050px);
+      margin: 28px auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .eyebrow {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--teal);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .page-intro h2 {
+      margin: 0;
+      color: var(--navy);
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(24px, 4vw, 34px);
+      line-height: 1.25;
+      letter-spacing: -.8px;
+    }
+
+    .page-intro p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .lesson-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 14px;
+      border: 1px solid #d5e9e7;
+      border-radius: 10px;
+      background: #eaf8f5;
+      color: #087f75;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    /* Main content panel */
+    main {
+      width: min(100% - 32px, 1050px);
+      margin: 0 auto 35px;
+      padding: clamp(18px, 4vw, 38px);
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 0 12px 38px rgba(20,45,80,.07);
+    }
+
+    .content-section {
+      margin: 0 0 29px;
+      padding: 0 0 25px;
+      border-bottom: 1px solid #edf1f6;
+      animation: fadeUp .5s ease both;
+    }
+
+    .content-section:last-child {
+      border-bottom: 0;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    h2 {
+      position: relative;
+      margin: 0 0 16px;
+      padding: 0 0 11px 15px;
+      border-bottom: 1px solid var(--line);
+      color: var(--navy);
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(19px, 2.6vw, 24px);
+      line-height: 1.4;
+      letter-spacing: -.35px;
+    }
+
+    h2::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 2px;
+      bottom: 13px;
+      width: 4px;
+      border-radius: 4px;
+      background: linear-gradient(180deg, var(--blue), var(--mint));
+    }
+
+    p, ul, ol {
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    p {
+      margin: 0 0 13px;
+    }
+
+    ul, ol {
+      margin: 10px 0 0;
+      padding-left: 25px;
+    }
+
+    li {
+      padding: 3px 0;
+    }
+
+    li::marker {
+      color: var(--teal);
+    }
+
+    b, strong {
+      color: #173b68;
+    }
+
+    .full-form-box {
+      padding: 19px;
+      border: 1px solid #d8e9ff;
+      border-radius: 14px;
+      background: linear-gradient(110deg, #eef5ff, #effcf9);
+      color: var(--navy);
+      font-size: clamp(15px, 2.4vw, 19px);
+      line-height: 2;
+      overflow-wrap: anywhere;
+    }
+
+    .highlight {
+      color: #dc2626;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .info-card {
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #f8faff;
+    }
+
+    .info-card .info-icon {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .info-card h3 {
+      margin: 0 0 6px;
+      color: var(--navy);
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+    }
+
+    .info-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    /* Diagram */
+    .diagram-card {
+      margin: 18px 0 0;
+      padding: 16px;
+      border: 1px solid #d8eee8;
+      border-radius: 16px;
+      background: linear-gradient(140deg, #f1fffa, #f1f6ff);
+      overflow: hidden;
+    }
+
+    .diagram-title {
+      margin-bottom: 12px;
+      color: #087f75;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .smartart-container {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: 10px;
+    }
+
+    .smartart-inner {
+      min-width: 560px;
+      width: 100%;
+    }
+
+    .smartart-inner svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      min-height: 250px;
+    }
+
+    .diagram-caption {
+      margin: 12px 0 0;
+      color: #53677d;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .screenshot-container {
+      position: relative;
+      max-width: 600px;
+      margin: 22px auto 0;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #e9eef5;
+      box-shadow: 0 8px 24px rgba(20,45,80,.12);
+      cursor: not-allowed;
+      animation: zoomIn .7s ease both;
+    }
+
+    .screenshot-container img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: brightness(.8);
+      pointer-events: none;
+    }
+
+    .lock-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3.5rem;
+      color: #ffe082;
+      pointer-events: none;
+      animation: pulseLock 3s ease-in-out infinite;
+      text-shadow: 0 0 12px #7c4dffcc;
+    }
+
+    .faq {
+      padding: 21px;
+      border: 1px solid #d5e9e7;
+      border-radius: 15px;
+      background: linear-gradient(130deg, #effcf8, #f3f7ff);
+    }
+
+    .faq h3 {
+      margin: 0 0 12px;
+      color: var(--navy);
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+    }
+
+    .faq ul {
+      margin: 0;
+    }
+
+    .faq li {
+      margin-bottom: 9px;
+    }
+
+    .faq li:last-child {
+      margin-bottom: 0;
+    }
+
+    .conclusion-box {
+      padding: 19px;
+      border-left: 4px solid var(--teal);
+      border-radius: 0 12px 12px 0;
+      background: #effbf7;
+      color: #36546a;
+      line-height: 1.9;
+      font-size: 14px;
+    }
+
+    /* Navigation and footer */
+    .page-actions {
+      text-align: center;
+      padding: 0 16px 8px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 28px;
+      background: linear-gradient(100deg, #102b50, #126b80);
+      color: white;
+      border: 0;
+      border-radius: 11px;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: .5px;
+      box-shadow: 0 8px 22px rgba(16,43,80,.22);
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .back-btn:hover,
+    .back-btn:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 27px rgba(16,43,80,.3);
+      outline: none;
+    }
+
+    footer {
+      margin-top: 28px;
+      padding: 24px 15px;
+      text-align: center;
+      color: #d7e5f8;
+      background: var(--navy);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .footer-brand {
+      color: white;
+      font-family: "Manrope", sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+
+    .footer-tagline {
+      color: #64e5cf;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes pulseLock {
+      0%, 100% { opacity: .65; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
+    }
+
+    @media (max-width: 720px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .info-card {
+        display: grid;
+        grid-template-columns: 36px 1fr;
+        column-gap: 10px;
+        align-items: start;
+      }
+
+      .info-card .info-icon {
+        grid-row: span 2;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        padding: 23px 16px 0;
+      }
+
+      .hero-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 13px;
+      }
+
+      .logo-frame {
+        width: 76px;
+        height: 76px;
+        min-width: 76px;
+      }
+
+      .brand-copy h1 {
+        font-size: 25px;
+      }
+
+      .hero-bottom {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .page-intro {
+        width: calc(100% - 26px);
+        margin-top: 24px;
+      }
+
+      main {
+        width: calc(100% - 20px);
+        padding: 20px 15px;
+        border-radius: 15px;
+      }
+
+      p, ul, ol {
+        font-size: 13px;
+      }
+
+      .full-form-box {
+        padding: 14px;
+      }
+
+      .diagram-card {
+        padding: 10px;
+      }
+
+      .lock-overlay {
+        font-size: 2.7rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    ::selection {
+      background: transparent;
+    }
+  </style>
+
+  <script>
+    // Preserve the original browser restrictions.
+    document.addEventListener('contextmenu', event => event.preventDefault());
+    document.addEventListener('copy', event => event.preventDefault());
+    document.addEventListener('cut', event => event.preventDefault());
+    document.addEventListener('paste', event => event.preventDefault());
+    document.addEventListener('dragstart', event => event.preventDefault());
+    document.addEventListener('selectstart', event => event.preventDefault());
+    document.addEventListener('mousedown', event => event.preventDefault());
+
+    // Preserve PrintScreen, print and save keyboard restrictions.
+    document.addEventListener('keydown', function(e) {
+      if (e.key === "PrintScreen") {
+        try {
+          navigator.clipboard.writeText('');
+        } catch (error) {}
+        alert('Screenshots are disabled on this page.');
+        e.preventDefault();
+      }
+
+      if (e.ctrlKey && (e.key.toLowerCase() === 'p' || e.key.toLowerCase() === 's')) {
+        alert('Printing and saving are disabled on this page.');
+        e.preventDefault();
+      }
+    });
+
+    window.addEventListener('keyup', function(e) {
+      if (e.key === "PrintScreen") {
+        try {
+          navigator.clipboard.writeText('');
+        } catch (error) {}
+        alert('Screenshots are disabled on this page.');
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <div class="topbar"></div>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="logo-frame">
+        <img
+          id="academyLogo"
+          src="./logo.png"
+          alt="Namami Digital Skills Academy Logo"
+          onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='block';"
+        >
+        <span id="logoFallback">🎓</span>
+      </div>
+
+      <div class="brand-copy">
+        <div class="brand-tag">Computer Education &amp; Skill Development</div>
+        <h1>NAMAMI DIGITAL<br>SKILLS ACADEMY</h1>
+        <p>Learn Today • Build Skills • Grow Tomorrow</p>
+      </div>
+    </div>
+
+    <div class="hero-bottom">
+      <strong>COMPUTER FUNDAMENTALS</strong>
+      <span>SOHAGPUR · PRACTICAL COMPUTER TRAINING</span>
+    </div>
+  </header>
+
+  <section class="page-intro">
+    <div>
+      <span class="eyebrow">Computer Fundamentals · Chapter 01</span>
+      <h2>What is a Computer?</h2>
+      <p>Full detailed notes, important terms, diagrams and FAQs.</p>
+    </div>
+    <div class="lesson-chip">📘 COMPLETE NOTES</div>
+  </section>
+
+  <main>
+    <section class="content-section">
+      <h2>Computer Full Form</h2>
+      <div class="full-form-box">
+        <span class="highlight">C</span>ommonly
+        <span class="highlight">O</span>perated
+        <span class="highlight">M</span>achine
+        <span class="highlight">P</span>articularly
+        <span class="highlight">U</span>sed for
+        <span class="highlight">T</span>echnical and
+        <span class="highlight">E</span>ducational
+        <span class="highlight">R</span>esearch
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>Definition</h2>
+      <p>
+        A <b>computer</b> is an electronic device that can store, retrieve, and process data according to a set of instructions called programs. It can accept input (data), process it, store it, and produce output (results). Computers can perform complex calculations, logical operations, and data manipulation with speed, accuracy, and reliability.
+      </p>
+
+      <ul>
+        <li><b>Origin:</b> The word "computer" comes from the Latin "computare", meaning "to calculate".</li>
+        <li><b>Basic Function:</b> Accepts input, processes data, stores information, and produces output.</li>
+        <li><b>Examples:</b> Desktop, laptop, smartphone, ATM, server, embedded systems, etc.</li>
+      </ul>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-icon">⌨️</div>
+          <h3>Input</h3>
+          <p>Enter data and instructions using devices such as a keyboard and mouse.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">⚙️</div>
+          <h3>Processing</h3>
+          <p>The CPU works on data according to program instructions.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">🖥️</div>
+          <h3>Output</h3>
+          <p>Processed results are presented to the user or stored for later use.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>Block Diagram of a Computer</h2>
+
+      <ul>
+        <li><b>Input Unit:</b> Devices like keyboard, mouse, scanner, microphone, etc. used to enter data and instructions into the computer.</li>
+        <li><b>Central Processing Unit (CPU):</b> The "brain" of the computer that processes instructions. It consists of:
+          <ul>
+            <li><b>ALU (Arithmetic Logic Unit):</b> Performs arithmetic and logical operations.</li>
+            <li><b>CU (Control Unit):</b> Controls and coordinates all operations of the computer.</li>
+            <li><b>Registers:</b> Small, fast memory locations inside the CPU for temporary data storage.</li>
+          </ul>
+        </li>
+        <li><b>Memory/Storage Unit:</b> Stores data temporarily (RAM) or permanently (HDD, SSD, ROM).</li>
+        <li><b>Output Unit:</b> Devices like monitor, printer, speaker, projector, etc. that display or present results to the user.</li>
+      </ul>
+
+      <div class="diagram-card">
+        <div class="diagram-title">Computer system · Block diagram</div>
+        <div class="smartart-container">
+          <div class="smartart-inner">
+            <svg viewBox="0 0 900 350" role="img" aria-label="Computer block diagram showing input, processing, output and storage">
+              <defs>
+                <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+                  <polygon points="0,0 10,5 0,10" fill="#0d9488"/>
+                </marker>
+              </defs>
+
+              <rect x="370" y="25" width="160" height="50" rx="14" fill="#102b50"/>
+              <text x="450" y="56" text-anchor="middle" fill="#fff" font-size="22" font-weight="700" font-family="Arial">Computer</text>
+
+              <line x1="450" y1="75" x2="450" y2="112" stroke="#0d9488" stroke-width="3" marker-end="url(#arrow)"/>
+
+              <rect x="320" y="115" width="260" height="32" rx="8" fill="#d9f7ef" stroke="#b7e9df"/>
+              <text x="450" y="136" text-anchor="middle" fill="#087f75" font-size="14" font-family="Arial">Storage (HDD, SSD, RAM, etc.)</text>
+
+              <line x1="450" y1="147" x2="200" y2="215" stroke="#0d9488" stroke-width="3" marker-end="url(#arrow)"/>
+              <line x1="450" y1="147" x2="450" y2="215" stroke="#0d9488" stroke-width="3" marker-end="url(#arrow)"/>
+              <line x1="450" y1="147" x2="700" y2="215" stroke="#0d9488" stroke-width="3" marker-end="url(#arrow)"/>
+
+              <rect x="140" y="225" width="120" height="62" rx="10" fill="#fff" stroke="#0d9488" stroke-width="2"/>
+              <text x="200" y="250" text-anchor="middle" fill="#102b50" font-size="16" font-weight="700" font-family="Arial">Input</text>
+              <text x="200" y="271" text-anchor="middle" fill="#53677d" font-size="12" font-family="Arial">Keyboard, Mouse</text>
+
+              <rect x="390" y="225" width="120" height="62" rx="10" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+              <text x="450" y="250" text-anchor="middle" fill="#102b50" font-size="16" font-weight="700" font-family="Arial">Processing</text>
+              <text x="450" y="271" text-anchor="middle" fill="#53677d" font-size="12" font-family="Arial">CPU</text>
+
+              <rect x="640" y="225" width="120" height="62" rx="10" fill="#fff" stroke="#0d9488" stroke-width="2"/>
+              <text x="700" y="250" text-anchor="middle" fill="#102b50" font-size="16" font-weight="700" font-family="Arial">Output</text>
+              <text x="700" y="271" text-anchor="middle" fill="#53677d" font-size="12" font-family="Arial">Monitor, Printer</text>
+            </svg>
+          </div>
+        </div>
+        <p class="diagram-caption"><b>Block diagram:</b> Input → Processing → Output, with Storage.</p>
+      </div>
+
+      <div class="screenshot-container" aria-label="Image shown with a lock overlay">
+        <img src="block.png" alt="Computer learning image" draggable="false">
+        <div class="lock-overlay" aria-hidden="true">🔒</div>
+      </div>
+    </section>
+
+    <section class="content-section" id="terms">
+      <h2>Important Computer Terms</h2>
+      <ul>
+        <li><b>Data:</b> Raw facts and figures that are yet to be processed (e.g., numbers, text, images).</li>
+        <li><b>Information:</b> Processed and organized data that is meaningful and useful for decision-making.</li>
+        <li><b>Instruction:</b> A command or order that tells the computer what operation to perform.</li>
+        <li><b>Processing:</b> The sequence of actions the computer takes to convert data into information.</li>
+      </ul>
+    </section>
+
+    <section class="content-section" id="hardware">
+      <h2>Hardware and Software</h2>
+      <ul>
+        <li><b>Hardware:</b> The physical components of a computer system (e.g., CPU, monitor, keyboard, mouse, hard disk, etc.).</li>
+        <li><b>Software:</b> A collection of programs and instructions that tell the hardware what to do. Software can be system software (like Windows, Linux) or application software (like MS Word, Photoshop).</li>
+      </ul>
+    </section>
+
+    <section class="content-section">
+      <h2>Main Components of a Computer</h2>
+      <ul>
+        <li><b>🖥️ Central Processing Unit (CPU):</b> The "brain" of the computer, responsible for executing instructions and processing data. It consists of the Arithmetic Logic Unit (ALU), Control Unit (CU), and registers.</li>
+        <li><b>💾 Memory Unit:</b> Stores data, instructions, and results. It includes RAM (temporary memory) and ROM (permanent memory).</li>
+        <li><b>⌨️ Input Devices:</b> Allow users to enter data and instructions into the computer (e.g., keyboard, mouse, scanner).</li>
+        <li><b>🖨️ Output Devices:</b> Display or produce the processed results (e.g., monitor, printer, speakers).</li>
+      </ul>
+    </section>
+
+    <section class="content-section">
+      <h2>Applications of Computers</h2>
+      <ul>
+        <li><b>Education:</b> E-learning, online classes, research, digital libraries.</li>
+        <li><b>Business:</b> Payroll, accounting, sales, inventory, communication.</li>
+        <li><b>Banking:</b> Online banking, ATMs, transactions.</li>
+        <li><b>Health:</b> Patient records, diagnostics, telemedicine.</li>
+        <li><b>Home:</b> Entertainment, shopping, communication.</li>
+        <li><b>Government:</b> Administration, record keeping, e-governance.</li>
+        <li><b>Industry:</b> Automation, design, manufacturing.</li>
+        <li><b>Transport:</b> Ticket booking, traffic control.</li>
+        <li><b>Science &amp; Research:</b> Data analysis, simulations.</li>
+      </ul>
+    </section>
+
+    <section class="content-section">
+      <h2>Working of a Computer</h2>
+      <ol>
+        <li>User provides input using input devices (keyboard, mouse, etc.).</li>
+        <li>Input is converted into binary form and sent to memory.</li>
+        <li>CPU fetches instructions and data from memory.</li>
+        <li>CPU processes data as per instructions (using ALU and CU).</li>
+        <li>Processed data is sent to output devices or stored for future use.</li>
+        <li>User receives output (on screen, printer, etc.).</li>
+      </ol>
+    </section>
+
+    <section class="content-section">
+      <h2>Advantages of Computers</h2>
+      <ul>
+        <li>Fast and accurate calculations</li>
+        <li>Can store and retrieve large amounts of data</li>
+        <li>Can perform repetitive tasks without error</li>
+        <li>Can connect and communicate globally</li>
+        <li>Reduces paperwork and saves time</li>
+      </ul>
+    </section>
+
+    <section class="content-section">
+      <h2>Disadvantages of Computers</h2>
+      <ul>
+        <li>Can lead to unemployment (automation)</li>
+        <li>Data security and privacy issues</li>
+        <li>Addiction and health problems (if overused)</li>
+        <li>Risk of viruses and hacking</li>
+        <li>High initial cost for advanced systems</li>
+      </ul>
+    </section>
+
+    <section class="content-section">
+      <div class="faq">
+        <h3>Frequently Asked Questions (FAQs)</h3>
+        <ul>
+          <li><b>Q: Who is known as the father of the computer?</b><br>
+            <b>A:</b> Charles Babbage is known as the father of the computer.</li>
+          <li><b>Q: What is the full form of CPU?</b><br>
+            <b>A:</b> Central Processing Unit.</li>
+          <li><b>Q: What is the difference between data and information?</b><br>
+            <b>A:</b> Data is raw facts and figures; information is processed data that is meaningful.</li>
+          <li><b>Q: Name two input and two output devices.</b><br>
+            <b>A:</b> Input: Keyboard, Mouse. Output: Monitor, Printer.</li>
+          <li><b>Q: What is software?</b><br>
+            <b>A:</b> Software is a set of instructions/programs that tell the computer what to do.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>Conclusion</h2>
+      <div class="conclusion-box">
+        Computers are essential tools in the modern world, enabling us to perform tasks quickly, accurately, and efficiently. Understanding their working, features, and limitations helps us use them wisely and effectively.
+      </div>
+    </section>
+  </main>
+
+  <div class="page-actions">
+    <a href="javascript:history.back()" class="back-btn">
+      <span aria-hidden="true">←</span> Back
+    </a>
+  </div>
+
+  <footer>
+    <div class="footer-brand">NAMAMI DIGITAL SKILLS ACADEMY</div>
+    <div class="footer-tagline">Sohagpur | Practical Computer Training</div>
+    <div>© Pawan Soni. All rights reserved.</div>
+  </footer>
+
+</body>
+</html>

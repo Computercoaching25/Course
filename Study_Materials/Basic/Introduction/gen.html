@@ -1,0 +1,967 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#7257F5">
+  <meta name="description" content="Explore the History of Computers at Namami Digital Skills Academy, Sohagpur.">
+  <title>History of Computers | Namami Digital Skills Academy</title>
+
+  <link rel="icon" href="https://img.icons8.com/color/48/computer.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --purple: #7257f5;
+      --purple-dark: #5035d5;
+      --pink: #ed70a5;
+      --orange: #ff8b63;
+      --green: #0eb995;
+      --blue: #399af5;
+      --ink: #27243d;
+      --muted: #77758d;
+      --page: #f8f7ff;
+      --white: #ffffff;
+      --line: #ece9fb;
+      --shadow: 0 12px 35px rgba(62, 45, 125, .09);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: "DM Sans", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 0% 20%, #eee9ff 0, transparent 30%),
+        radial-gradient(ellipse at 100% 55%, #e4fff5 0, transparent 27%),
+        var(--page);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    button, a {
+      font: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* HEADER */
+    .site-header {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: 27px 18px 38px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(125deg, #6048ed, #9860ed 52%, #ed76ad);
+      border-radius: 0 0 34px 34px;
+      box-shadow: 0 15px 38px rgba(107, 77, 220, .23);
+    }
+
+    .site-header::before,
+    .site-header::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      border: 1px solid rgba(255,255,255,.20);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .site-header::before {
+      width: 280px;
+      height: 280px;
+      top: -185px;
+      left: -55px;
+      box-shadow: 0 0 0 25px rgba(255,255,255,.04),
+                  0 0 0 50px rgba(255,255,255,.03);
+    }
+
+    .site-header::after {
+      width: 330px;
+      height: 330px;
+      right: -125px;
+      bottom: -250px;
+      box-shadow: 0 0 0 30px rgba(255,255,255,.04);
+    }
+
+    .brand-logo {
+      position: relative;
+      width: 94px;
+      height: 94px;
+      padding: 5px;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid rgba(255,255,255,.9);
+      box-shadow: 0 8px 28px rgba(38, 20, 93, .24);
+    }
+
+    .brand-logo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .logo-fallback {
+      display: none;
+      font-size: 38px;
+      color: var(--purple);
+    }
+
+    .brand-name {
+      position: relative;
+      margin: 0;
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(1.3rem, 4vw, 2.2rem);
+      font-weight: 900;
+      letter-spacing: .4px;
+      line-height: 1.4;
+    }
+
+    .brand-location {
+      margin: 8px 0 0;
+      font-size: .82rem;
+      letter-spacing: 1.8px;
+      font-weight: 700;
+      color: #fff1ff;
+    }
+
+    /* HERO */
+    .hero {
+      max-width: 920px;
+      margin: auto;
+      padding: 42px 20px 23px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: 50px;
+      background: #eeeaff;
+      color: var(--purple-dark);
+      border: 1px solid #ded6ff;
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    .hero h2 {
+      margin: 18px 0 13px;
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(2.1rem, 5vw, 3.6rem);
+      line-height: 1.17;
+      letter-spacing: -1.7px;
+      font-weight: 900;
+    }
+
+    .hero h2 span {
+      color: var(--purple);
+      background: linear-gradient(90deg, #7257f5, #e45d9e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 690px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.85;
+    }
+
+    .hero-pills {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 20px;
+    }
+
+    .hero-pills span {
+      padding: 8px 13px;
+      border: 1px solid #e8e3ff;
+      background: rgba(255,255,255,.8);
+      border-radius: 50px;
+      color: #68617f;
+      font-size: .8rem;
+      font-weight: 700;
+    }
+
+    .section-heading {
+      width: min(1200px, 92%);
+      margin: 17px auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .section-heading h3 {
+      margin: 0;
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    .section-heading p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: .87rem;
+    }
+
+    .card-count {
+      padding: 9px 14px;
+      background: #e8fff7;
+      color: #078b6f;
+      border: 1px solid #cbf6e8;
+      border-radius: 50px;
+      font-size: .82rem;
+      font-weight: 800;
+    }
+
+    /* CARD GRID */
+    .timeline {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      align-items: start;
+    }
+
+    .timeline-card {
+      --accent: #7257f5;
+      --tint: #f0edff;
+
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 0;
+      padding: 24px 19px 20px;
+      overflow: hidden;
+      text-align: center;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      animation: cardAppear .5s both;
+    }
+
+    .timeline-card:nth-child(4n+1) {
+      --accent: #7257f5;
+      --tint: #f0edff;
+    }
+
+    .timeline-card:nth-child(4n+2) {
+      --accent: #f07858;
+      --tint: #fff0e9;
+    }
+
+    .timeline-card:nth-child(4n+3) {
+      --accent: #0da987;
+      --tint: #e6fbf4;
+    }
+
+    .timeline-card:nth-child(4n) {
+      --accent: #348fe8;
+      --tint: #eaf4ff;
+    }
+
+    .timeline-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent), #f3b6dc);
+    }
+
+    .timeline-card:hover,
+    .timeline-card.open,
+    .timeline-card:focus-visible {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 45px rgba(67, 49, 135, .15);
+      outline: none;
+    }
+
+    .card-number {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: grid;
+      place-items: center;
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
+      background: var(--tint);
+      color: var(--accent);
+      font-size: .76rem;
+      font-weight: 900;
+    }
+
+    .img-frame {
+      width: 94px;
+      height: 94px;
+      padding: 5px;
+      margin: 1px 0 14px;
+      border-radius: 50%;
+      background: var(--tint);
+      border: 2px solid var(--accent);
+      box-shadow: 0 7px 18px rgba(45, 37, 92, .09);
+      transition: transform .3s ease;
+    }
+
+    .img-icon {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      background: white;
+    }
+
+    .timeline-card:hover .img-frame,
+    .timeline-card.open .img-frame {
+      transform: rotate(-5deg) scale(1.05);
+    }
+
+    .title {
+      margin: 0 0 10px;
+      font-family: "Montserrat", sans-serif;
+      color: #292641;
+      font-size: 1.08rem;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .year {
+      display: inline-block;
+      margin-bottom: 15px;
+      padding: 7px 13px;
+      border-radius: 50px;
+      background: var(--tint);
+      color: var(--accent);
+      font-size: .82rem;
+      font-weight: 800;
+    }
+
+    .card-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #79758d;
+      font-size: .81rem;
+      font-weight: 700;
+    }
+
+    .arrow {
+      display: inline-block;
+      color: var(--accent);
+      transition: transform .25s ease;
+    }
+
+    .timeline-card.open .arrow {
+      transform: rotate(180deg);
+    }
+
+    .timeline-details {
+      display: none;
+      width: 100%;
+      margin-top: 19px;
+      padding: 17px 15px;
+      text-align: left;
+      background: #faf9ff;
+      border: 1px solid #eeebfa;
+      border-radius: 17px;
+      animation: detailsAppear .25s ease;
+    }
+
+    .timeline-card.open .timeline-details {
+      display: block;
+    }
+
+    .timeline-details ul {
+      margin: 0 0 15px;
+      padding-left: 20px;
+      color: #49465f;
+      font-size: .91rem;
+      line-height: 1.8;
+    }
+
+    .timeline-details li {
+      margin-bottom: 7px;
+      padding-left: 2px;
+    }
+
+    .timeline-details li::marker {
+      color: var(--accent);
+    }
+
+    .examples {
+      margin-top: 12px;
+      color: #4b4861;
+      font-size: .9rem;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .examples b {
+      color: var(--accent);
+    }
+
+    .impact {
+      margin-top: 14px;
+      padding: 12px 13px;
+      color: #087b64;
+      background: #e8faf4;
+      border-left: 3px solid #0eb995;
+      border-radius: 10px;
+      font-size: .87rem;
+      line-height: 1.7;
+    }
+
+    /* BOTTOM BUTTONS */
+    .bottom-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 38px 15px 36px;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      min-width: 145px;
+      padding: 13px 20px;
+      border: 0;
+      border-radius: 13px;
+      color: white;
+      background: linear-gradient(110deg, #7257f5, #9860e9);
+      box-shadow: 0 8px 20px rgba(114, 87, 245, .19);
+      font-size: .9rem;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .2s ease, filter .2s ease;
+    }
+
+    .action-btn.green {
+      background: linear-gradient(110deg, #0eb995, #079b91);
+      box-shadow: 0 8px 20px rgba(14, 185, 149, .16);
+    }
+
+    .action-btn.orange {
+      background: linear-gradient(110deg, #ff916b, #f16c91);
+      box-shadow: 0 8px 20px rgba(241, 108, 145, .16);
+    }
+
+    .action-btn:hover,
+    .action-btn:focus-visible {
+      transform: translateY(-3px);
+      filter: brightness(1.05);
+      outline: 3px solid #ded6ff;
+      outline-offset: 3px;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 24px 15px;
+      text-align: center;
+      background: white;
+      border-top: 1px solid var(--line);
+      color: #77758d;
+      font-size: .87rem;
+      line-height: 1.9;
+    }
+
+    footer strong {
+      color: var(--purple);
+    }
+
+    .footer-tagline {
+      color: #918ca6;
+      font-size: .81rem;
+    }
+
+    @keyframes cardAppear {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes detailsAppear {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 950px) {
+      .timeline {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 17px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .site-header {
+        padding: 25px 14px 31px;
+        border-radius: 0 0 25px 25px;
+      }
+
+      .brand-logo {
+        width: 79px;
+        height: 79px;
+      }
+
+      .brand-location {
+        font-size: .71rem;
+        letter-spacing: 1px;
+      }
+
+      .hero {
+        padding: 33px 17px 23px;
+      }
+
+      .hero h2 {
+        letter-spacing: -.8px;
+      }
+
+      .hero p {
+        font-size: .94rem;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+      }
+
+      .timeline {
+        width: 91%;
+        grid-template-columns: 1fr;
+        gap: 17px;
+      }
+
+      .timeline-card {
+        padding: 23px 18px 20px;
+        border-radius: 22px;
+      }
+
+      .img-frame {
+        width: 86px;
+        height: 86px;
+      }
+
+      .timeline-details {
+        padding: 16px 14px;
+      }
+
+      .bottom-actions {
+        gap: 10px;
+        margin-top: 30px;
+      }
+
+      .action-btn {
+        min-width: 125px;
+        padding: 12px 14px;
+        font-size: .83rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body oncontextmenu="return false;">
+
+  <header class="site-header">
+    <div class="brand-logo">
+      <img
+        src="./logo.png"
+        alt="Namami Digital Skills Academy Logo"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+      >
+      <span class="logo-fallback" aria-hidden="true">💻</span>
+    </div>
+
+    <h1 class="brand-name">NAMAMI DIGITAL SKILLS ACADEMY</h1>
+    <p class="brand-location">SOHAGPUR · PRACTICAL COMPUTER TRAINING</p>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="eyebrow">✦ Computer Fundamentals</span>
+
+      <h2>The History of <span>Computers</span></h2>
+
+      <p>
+        From the ancient Abacus to modern Artificial Intelligence, discover
+        the amazing journey of computers and the inventions that changed our world.
+      </p>
+
+      <div class="hero-pills">
+        <span>⌛ Historical Journey</span>
+        <span>💻 Computer Generations</span>
+        <span>🚀 Future Technology</span>
+      </div>
+    </section>
+
+    <section class="section-heading">
+      <div>
+        <h3>Explore the Timeline</h3>
+        <p>Choose a topic to reveal its history and key facts.</p>
+      </div>
+      <span class="card-count">11 Learning Topics</span>
+    </section>
+
+    <section class="timeline" id="timeline" aria-label="History of computers">
+
+      <!-- 01 ABACUS -->
+      <article class="timeline-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="card-number">01</span>
+        <div class="img-frame">
+          <img class="img-icon" src="https://img.icons8.com/color/96/abacus.png" alt="Abacus" loading="lazy">
+        </div>
+        <h3 class="title">Abacus</h3>
+        <span class="year">Ancient Era</span>
+        <span class="card-hint">Discover more <span class="arrow">▼</span></span>
+        <div class="timeline-details">
+          <ul>
+            <li>An ancient calculating tool used in different civilizations, including China.</li>
+            <li>Uses beads or counters arranged on rods or wires.</li>
+            <li>Helps perform addition, subtraction and other arithmetic calculations.</li>
+          </ul>
+          <div class="examples"><b>Example:</b> Wooden or metal abacus.</div>
+          <div class="impact">Impact: An important early tool in the history of calculation.</div>
+        </div>
+      </article>
+
+      <!-- 02 PASCALINE -->
+      <article class="timeline-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="card-number">02</span>
+        <div class="img-frame">
+          <img class="img-icon" src="https://img.icons8.com/color/96/calculator--v1.png" alt="Mechanical calculator" loading="lazy">
+        </div>
+        <h3 class="title">Pascal's Calculator</h3>
+        <span class="year">1642</span>
+        <span class="card-hint">Discover more <span class="arrow">▼</span></span>
+        <div class="timeline-details">
+          <ul>
+            <li>Invented by French mathematician Blaise Pascal in 1642.</li>
+            <li>Known as the Pascaline, it was a mechanical calculating machine.</li>
+            <li>It was designed primarily to perform addition and subtraction.</li>
+          </ul>
+          <div class="examples"><b>Example:</b> Pascaline mechanical calculator.</div>
+          <div class="impact">Impact: Helped advance mechanical calculation.</div>
+        </div>
+      </article>
+
+      <!-- 03 BABBAGE -->
+      <article class="timeline-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="card-number">03</span>
+        <div class="img-frame">
+          <img class="img-icon" src="https://cdn.britannica.com/10/23610-050-6E34CF6B/portion-Difference-Engine-Charles-Babbage-logarithm-tables-1832.jpg" alt="Babbage's Difference Engine" loading="lazy">
+        </div>
+        <h3 class="title">Babbage's Engines</h3>
+        <span class="year">1822–1837</span>
+        <span class="card-hint">Discover more <span class="arrow">▼</span></span>
+        <div class="timeline-details">
+          <ul>
+            <li>Charles Babbage proposed the Difference Engine in 1822.</li>
+            <li>He later designed the Analytical Engine, a general-purpose mechanical computing concept.</li>
+            <li>The Analytical Engine included concepts comparable to memory, processing and input/output.</li>
+          </ul>
+          <div class="examples"><b>Examples:</b> Difference Engine and Analytical Engine.</div>
+          <div class="impact">Impact: Charles Babbage is widely known as the Father of the Computer.</div>
+        </div>
+      </article>
+
+      <!-- 04 TABULATING MACHINE -->
+      <article class="timeline-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="card-number">04</span>
+        <div class="img-frame">
+          <img class="img-icon" src="https://img.icons8.com/color/96/punch-card.png" alt="Punched card" loading="lazy">
+        </div>
+        <h3 class="title">Tabulating Machine</h3>
+        <span class="year">1880s</span>
+        <span class="card-hint">Discover more <span class="arrow">▼</span></span>
+        <div class="timeline-details">
+          <ul>
+            <li>Developed by Herman Hollerith for processing large amounts of data.</li>
+            <li>Used punched cards to store and process information.</li>
+            <li>Hollerith's technology was used in processing the 1890 US Census.</li>
+          </ul>
+          <div class="examples"><b>Example:</b> Hollerith punched-card tabulator.</div>
+          <div class="impact">Impact: Punched-card data processing influenced the development of the computing industry.</div>
+        </div>
+      </article>
+
+      <!-- 05 MARK I -->
+      <article class="timeline-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="card-number">05</span>
+        <div class="img-frame">
+          <img class="img-icon" src="https://img.icons8.com/color/96/server.png" alt="Computer system" loading="lazy">
+        </div>
+        <h3 class="title">Harvard Mark I</h3>
+        <span class="year">1944</span>
+        <span class="card-hint">Discover more <span class="arrow">▼</span></span>
+        <div class="timeline-details">
+          <ul>
+            <li>Developed through a collaboration between Howard Aiken and IBM.</li>
+            <li>Completed in 1944, it was a large electromechanical computer.</li>
+            <li>It used electrical and mechanical components to carry out calculations.</li>
+          </ul>
+          <div class="examples"><b>Example:</b> IBM Automatic Sequence Controlled Calculator, known as Harvard Mark I.</div>
+          <div class="impact">Impact: An important milestone between mechanical calculators and electronic computers.</div>
+        </div>
+      </article>
+
+      <!-- 06 ENIAC -->
+      <article class="timeline-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="card-number">06</span>
+        <div class="img-frame">
+          <img class="img-icon" src="https://img.icons8.com/color/96/000000/computer.png" alt="ENIAC computer" loading="lazy">
+        </div>
+        <h3 class="title">ENIAC</h3>
+        <span class="year">1945–1946</span>
+        <span class="card-hint">Discover more <span class="arrow">▼</span></span>
+        <div class="timeline-details">
+          <ul>
+            <li>Designed by J. Presper Eckert and John Mauchly.</li>
+            <li>ENIAC was publicly unveiled in 1946.</li>
+            <li>It used vacuum tubes and was designed for high-speed electronic calculations.</li>
+          </ul>
+          <div class="examples"><b>Related computers:</b> ENIAC, EDVAC and UNIVAC I.</div>
+          <div class="impact">Impact: A landmark in the development of electronic computing.</div>
+        </div>
+      </article>
+
+      <!-- 07 FIRST GENERATION -->
+      <article class="timeline-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="card-number">07</span>
+        <div class="img-frame">
+          <img class="img-icon" src="https://www.techgeekbuzz.com/media/uploads/vijay/2023/07/27/first-generation_computers.jpg" alt="First generation computer" loading="lazy">
+        </div>
+        <h3 class="title">First Generation</h3>
+        <span class="year">1940–1956</span>
+        <span class="card-hint">Discover more <span class="arrow">▼</span></span>
+        <div class="timeline-details">
+          <ul>
+            <li>Used vacuum tubes for electronic circuitry.</li>
+            <li>Used magnetic drums for memory in many systems.</li>
+            <li>Machines were large, expensive and consumed considerable electricity.</li>
+            <li>Programs were often written in machine language.</li>
+          </ul>
+          <div class="examples"><b>Examples:</b> ENIAC, UNIVAC I, IBM 701 and EDVAC.</div>
+          <div class="impact">Impact: Made large-scale electronic calculations possible.</div>
+        </div>
+      </article>
+
+      <!-- 08 SECOND GENERATION -->
+      <article class="timeline-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="card-number">08</span>
+        <div class="img-frame">
+          <img class="img-icon" src="https://www.tutorialspoint.com/computer_fundamentals/images/second_generation.jpg" alt="Second generation computer" loading="lazy">
+        </div>
+        <h3 class="title">Second Generation</h3>
+        <span class="year">1956–1963</span>
+        <span class="card-hint">Discover more <span class="arrow">▼</span></span>
+        <div class="timeline-details">
+          <ul>
+            <li>Transistors replaced vacuum tubes.</li>
+            <li>Computers became smaller, more reliable and more energy-efficient.</li>
+            <li>Assembly language and early high-level languages were used.</li>
+            <li>They generally produced less heat than first-generation machines.</li>
+          </ul>
+          <div class="examples"><b>Examples:</b> IBM 1401, IBM 7090 and CDC 1604.</div>
+          <div class="impact">Impact: Improved computing reliability and efficiency.</div>
+        </div>
+      </article>
+
+      <!-- 09 THIRD GENERATION -->
+      <article class="timeline-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="card-number">09</span>
+        <div class="img-frame">
+          <img class="img-icon" src="https://www.tutorialspoint.com/computer_fundamentals/images/third_generation.jpg" alt="Third generation computer" loading="lazy">
+        </div>
+        <h3 class="title">Third Generation</h3>
+        <span class="year">1964–1971</span>
+        <span class="card-hint">Discover more <span class="arrow">▼</span></span>
+        <div class="timeline-details">
+          <ul>
+            <li>Integrated Circuits (ICs) combined multiple electronic components on chips.</li>
+            <li>Operating systems and multiprogramming became more common.</li>
+            <li>Computers became more compact and efficient.</li>
+            <li>High-level programming languages were widely used.</li>
+          </ul>
+          <div class="examples"><b>Examples:</b> IBM System/360 and PDP-8.</div>
+          <div class="impact">Impact: Expanded computer use in businesses, universities and organizations.</div>
+        </div>
+      </article>
+
+      <!-- 10 FOURTH GENERATION -->
+      <article class="timeline-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="card-number">10</span>
+        <div class="img-frame">
+          <img class="img-icon" src="https://img.icons8.com/color/96/microchip.png" alt="Microprocessor" loading="lazy">
+        </div>
+        <h3 class="title">Fourth Generation</h3>
+        <span class="year">1971–Present Era</span>
+        <span class="card-hint">Discover more <span class="arrow">▼</span></span>
+        <div class="timeline-details">
+          <ul>
+            <li>Microprocessors placed the CPU functions on a single chip.</li>
+            <li>Personal computers became increasingly common.</li>
+            <li>Graphical User Interfaces, networking and multimedia developed rapidly.</li>
+            <li>Computers became smaller and more affordable for everyday use.</li>
+          </ul>
+          <div class="examples"><b>Examples:</b> IBM PC, Apple Macintosh and Intel 4004/8086-based systems.</div>
+          <div class="impact">Impact: Helped bring computing into homes, schools and offices.</div>
+        </div>
+      </article>
+
+      <!-- 11 FIFTH GENERATION -->
+      <article class="timeline-card" tabindex="0" role="button" aria-expanded="false">
+        <span class="card-number">11</span>
+        <div class="img-frame">
+          <img class="img-icon" src="https://media.geeksforgeeks.org/wp-content/uploads/20230427102232/AI-660.webp" alt="Artificial Intelligence" loading="lazy">
+        </div>
+        <h3 class="title">Fifth Generation</h3>
+        <span class="year">Modern Era & Future</span>
+        <span class="card-hint">Discover more <span class="arrow">▼</span></span>
+        <div class="timeline-details">
+          <ul>
+            <li>Focuses on Artificial Intelligence (AI) and intelligent computing systems.</li>
+            <li>Includes Machine Learning, Natural Language Processing and robotics.</li>
+            <li>Research also explores quantum computing and advanced parallel processing.</li>
+            <li>AI systems can recognize patterns, generate content and assist with complex tasks.</li>
+          </ul>
+          <div class="examples"><b>Examples:</b> AI assistants, speech recognition, robotics and experimental quantum computers.</div>
+          <div class="impact">Impact: Continues to transform how people learn, work and solve problems.</div>
+        </div>
+      </article>
+
+    </section>
+
+    <div class="bottom-actions">
+      <button class="action-btn green" type="button" id="expandBtn">＋ Expand All</button>
+      <button class="action-btn orange" type="button" id="collapseBtn">− Collapse All</button>
+      <a class="action-btn" href="javascript:history.back()">← Go Back</a>
+    </div>
+  </main>
+
+  <footer>
+    <div>© <span id="yearNow"></span> <strong>Namami Digital Skills Academy</strong></div>
+    <div>Developed by <strong>Pawan Soni</strong></div>
+    <div class="footer-tagline">Sohagpur | Practical Computer Training</div>
+  </footer>
+
+  <script>
+    const cards = document.querySelectorAll(".timeline-card");
+
+    function setCardState(card, isOpen) {
+      card.classList.toggle("open", isOpen);
+      card.setAttribute("aria-expanded", String(isOpen));
+    }
+
+    function toggleCard(selectedCard) {
+      const shouldOpen = !selectedCard.classList.contains("open");
+
+      cards.forEach(card => {
+        setCardState(card, card === selectedCard && shouldOpen);
+      });
+    }
+
+    cards.forEach(card => {
+      card.addEventListener("click", () => {
+        toggleCard(card);
+      });
+
+      card.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          toggleCard(card);
+        }
+      });
+    });
+
+    document.getElementById("expandBtn").addEventListener("click", () => {
+      cards.forEach(card => setCardState(card, true));
+    });
+
+    document.getElementById("collapseBtn").addEventListener("click", () => {
+      cards.forEach(card => setCardState(card, false));
+    });
+
+    document.getElementById("yearNow").textContent = new Date().getFullYear();
+
+    /* Basic copy deterrents; not complete content protection. */
+    document.addEventListener("copy", event => event.preventDefault());
+    document.addEventListener("cut", event => event.preventDefault());
+    document.addEventListener("dragstart", event => event.preventDefault());
+
+    document.addEventListener("keydown", event => {
+      const key = event.key.toLowerCase();
+
+      if ((event.ctrlKey || event.metaKey) &&
+          ["p", "s", "u"].includes(key)) {
+        event.preventDefault();
+      }
+
+      if (event.key === "PrintScreen") {
+        alert("Please respect the academy's learning material.");
+      }
+    });
+  </script>
+</body>
+</html>
