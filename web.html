@@ -1,0 +1,438 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#101a3a" />
+
+  <title>Web Designing Syllabus - Namami Digital Skills Academy</title>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Montserrat', Arial, sans-serif;
+      min-height: 100vh;
+      padding: 0 16px 40px;
+      color: #172033;
+      background:
+        radial-gradient(circle at 10% 10%, #d8ccff 0, transparent 30%),
+        radial-gradient(circle at 90% 80%, #b8f4ff 0, transparent 28%),
+        linear-gradient(135deg, #eef2ff, #f8faff 55%, #e0f7ff);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    header {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 30px 16px 28px;
+      text-align: center;
+      color: #fff;
+      background: linear-gradient(120deg, #111a3b, #5633a8 58%, #087fba);
+      border-radius: 0 0 30px 30px;
+      box-shadow: 0 14px 35px #34236a30;
+      animation: fadeInDown 0.8s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      border: 1px solid #ffffff25;
+      border-radius: 50%;
+      top: -140px;
+      right: -40px;
+    }
+
+    .logo-wrap {
+      width: 94px;
+      height: 94px;
+      margin: 0 auto 14px;
+      border: 3px solid #ffffffcc;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 0 6px #ffffff18, 0 8px 25px #0003;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .logo-fallback {
+      display: none;
+      color: #5937a8;
+      font-size: 38px;
+    }
+
+    header h1 {
+      color: #ffd166;
+      font-size: clamp(1.4rem, 4vw, 2.25rem);
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      line-height: 1.3;
+      text-shadow: 0 3px 12px #0003;
+      position: relative;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      color: #e5f5ff;
+      position: relative;
+    }
+
+    .tagline {
+      margin-top: 10px;
+      font-size: 0.88rem;
+      color: #ffffffd9;
+      letter-spacing: 0.5px;
+      position: relative;
+    }
+
+    .syllabus-container {
+      max-width: 760px;
+      margin: 34px auto 0;
+      padding: 30px;
+      background: #ffffffed;
+      border: 1px solid #fff;
+      border-radius: 24px;
+      box-shadow: 0 18px 50px #293b6b18;
+      animation: fadeInUp 0.8s ease both;
+    }
+
+    .course-badge {
+      display: table;
+      margin: 0 auto 16px;
+      padding: 7px 15px;
+      border-radius: 30px;
+      background: #e8e1ff;
+      color: #5937a8;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .syllabus-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      color: #4930a0;
+      font-size: clamp(1.25rem, 3vw, 1.65rem);
+      font-weight: 900;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .title-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      background: linear-gradient(135deg, #7546df, #06a9c8);
+      border-radius: 14px;
+      box-shadow: 0 6px 15px #7546df30;
+    }
+
+    .description {
+      max-width: 560px;
+      margin: 0 auto 24px;
+      color: #647084;
+      font-size: 0.96rem;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .syllabus-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .syllabus-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 15px 16px;
+      border: 1px solid #e7eaf4;
+      border-radius: 14px;
+      background: linear-gradient(110deg, #fff, #f8faff);
+      color: #303b50;
+      font-size: 1rem;
+      line-height: 1.65;
+      box-shadow: 0 3px 10px #27345a08;
+      transition: transform 0.22s ease, box-shadow 0.22s ease,
+                  border-color 0.22s ease;
+      animation: fadeInList 0.55s ease both;
+    }
+
+    .syllabus-list li:hover {
+      transform: translateY(-3px);
+      border-color: #b8a5f2;
+      box-shadow: 0 8px 20px #47309c12;
+    }
+
+    .check-icon {
+      flex-shrink: 0;
+      margin-top: 3px;
+      width: 25px;
+      height: 25px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: #fff;
+      background: linear-gradient(135deg, #7546df, #06a9c8);
+      font-size: 12px;
+    }
+
+    .footer-note {
+      margin-top: 24px;
+      padding: 15px;
+      text-align: center;
+      color: #4b5670;
+      background: #f0edff;
+      border: 1px dashed #c6b8f5;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: fit-content;
+      margin: 26px auto 0;
+      padding: 13px 30px;
+      background: linear-gradient(100deg, #6038c5, #078fb8);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: 0 7px 18px #5633a830;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .back-btn:hover,
+    .back-btn:focus {
+      transform: translateY(-3px);
+      box-shadow: 0 11px 25px #5633a845;
+    }
+
+    .brand-footer {
+      margin: 24px auto 0;
+      text-align: center;
+      color: #68738a;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInList {
+      from { opacity: 0; transform: translateX(-12px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .syllabus-list li:nth-child(1) { animation-delay: 0.05s; }
+    .syllabus-list li:nth-child(2) { animation-delay: 0.10s; }
+    .syllabus-list li:nth-child(3) { animation-delay: 0.15s; }
+    .syllabus-list li:nth-child(4) { animation-delay: 0.20s; }
+    .syllabus-list li:nth-child(5) { animation-delay: 0.25s; }
+    .syllabus-list li:nth-child(6) { animation-delay: 0.30s; }
+    .syllabus-list li:nth-child(7) { animation-delay: 0.35s; }
+    .syllabus-list li:nth-child(8) { animation-delay: 0.40s; }
+    .syllabus-list li:nth-child(9) { animation-delay: 0.45s; }
+
+    @media (max-width: 600px) {
+      body { padding: 0 10px 28px; }
+      header { padding: 25px 12px 23px; border-radius: 0 0 22px 22px; }
+      .logo-wrap { width: 78px; height: 78px; }
+      header h1 { letter-spacing: 0.7px; }
+      .subtitle { font-size: 0.75rem; letter-spacing: 1px; }
+      .tagline { font-size: 0.78rem; }
+      .syllabus-container { padding: 22px 15px; margin-top: 23px; }
+      .syllabus-list li { padding: 13px 12px; font-size: 0.94rem; }
+      .syllabus-title { gap: 9px; }
+      .title-icon { width: 38px; height: 38px; border-radius: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media print {
+      body { display: none !important; }
+    }
+  </style>
+</head>
+
+<body oncontextmenu="return false;">
+
+  <header>
+    <div class="logo-wrap">
+      <img
+        src="../logo.png"
+        alt="Namami Digital Skills Academy Logo"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+      />
+      <i class="fas fa-graduation-cap logo-fallback"></i>
+    </div>
+
+    <h1>NAMAMI DIGITAL SKILLS ACADEMY</h1>
+    <div class="subtitle">SOHAGPUR · PRACTICAL COMPUTER TRAINING</div>
+    <div class="tagline">Learn Today • Build Skills • Grow Tomorrow</div>
+  </header>
+
+  <main class="syllabus-container">
+    <div class="course-badge">
+      <i class="fas fa-book-open"></i> Course Syllabus
+    </div>
+
+    <h2 class="syllabus-title">
+      <span class="title-icon">
+        <i class="fas fa-code"></i>
+      </span>
+      Web Designing Syllabus
+    </h2>
+
+    <p class="description">
+      Learn how to create modern, responsive websites using HTML, CSS,
+      JavaScript, practical projects, and basic website hosting.
+    </p>
+
+    <ul class="syllabus-list">
+      <li>
+        <span class="check-icon"><i class="fas fa-check"></i></span>
+        <span>Introduction to Web Technologies</span>
+      </li>
+      <li>
+        <span class="check-icon"><i class="fas fa-check"></i></span>
+        <span>HTML5 &amp; CSS3 (Structure and Styling)</span>
+      </li>
+      <li>
+        <span class="check-icon"><i class="fas fa-check"></i></span>
+        <span>Responsive Web Design (Media Queries, Flex/Grid)</span>
+      </li>
+      <li>
+        <span class="check-icon"><i class="fas fa-check"></i></span>
+        <span>JavaScript Basics &amp; Interactivity</span>
+      </li>
+      <li>
+        <span class="check-icon"><i class="fas fa-check"></i></span>
+        <span>Web Layouts &amp; Navigation Menus</span>
+      </li>
+      <li>
+        <span class="check-icon"><i class="fas fa-check"></i></span>
+        <span>Live Projects (Portfolio, Business Website)</span>
+      </li>
+      <li>
+        <span class="check-icon"><i class="fas fa-check"></i></span>
+        <span>Hosting &amp; Domain Basics</span>
+      </li>
+      <li>
+        <span class="check-icon"><i class="fas fa-check"></i></span>
+        <span>Assignments &amp; Practice</span>
+      </li>
+      <li>
+        <span class="check-icon"><i class="fas fa-check"></i></span>
+        <span>Certificate after successful completion</span>
+      </li>
+    </ul>
+
+    <div class="footer-note">
+      <i class="fas fa-laptop-code"></i>
+      <strong> NAMAMI DIGITAL SKILLS ACADEMY</strong><br />
+      Sohagpur | Practical Computer Training
+    </div>
+
+    <button class="back-btn" type="button" onclick="goBack()">
+      <i class="fas fa-arrow-left"></i> Back
+    </button>
+
+    <div class="brand-footer">
+      © Namami Digital Skills Academy · Sohagpur
+    </div>
+  </main>
+
+  <script>
+    // Best-effort restrictions; these cannot completely prevent copying.
+    document.addEventListener("contextmenu", function(event) {
+      event.preventDefault();
+    });
+
+    ["copy", "cut", "paste", "selectstart", "dragstart"].forEach(function(action) {
+      document.addEventListener(action, function(event) {
+        event.preventDefault();
+      });
+    });
+
+    document.addEventListener("keydown", function(event) {
+      const key = event.key.toLowerCase();
+      const ctrlOrCmd = event.ctrlKey || event.metaKey;
+
+      if (
+        key === "f12" ||
+        (ctrlOrCmd && ["c", "x", "v", "a", "s", "p", "u"].includes(key)) ||
+        (ctrlOrCmd && event.shiftKey && ["i", "j", "c", "s"].includes(key)) ||
+        (event.shiftKey && key === "printscreen")
+      ) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    });
+
+    function goBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = "../home.html";
+      }
+    }
+  </script>
+
+</body>
+</html>

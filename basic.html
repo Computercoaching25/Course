@@ -1,0 +1,488 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Basic Computer Course Syllabus | Namami Digital Skills Academy</title>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(135deg, #eef2ff, #ecfeff, #f5f3ff);
+      color: #1e293b;
+      min-height: 100vh;
+      overflow-x: hidden;
+
+      /* Discourage normal text selection */
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    /* Academy header */
+    header {
+      position: relative;
+      overflow: hidden;
+      padding: 30px 18px 34px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(120deg, #312e81, #6d28d9, #0891b2);
+      border-radius: 0 0 32px 32px;
+      box-shadow: 0 10px 30px rgba(49, 46, 129, 0.22);
+      animation: headerAppear 0.8s ease-out;
+    }
+
+    header::before,
+    header::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    header::before {
+      width: 220px;
+      height: 220px;
+      top: -125px;
+      left: -55px;
+    }
+
+    header::after {
+      width: 280px;
+      height: 280px;
+      bottom: -205px;
+      right: -60px;
+    }
+
+    .brand {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Circular logo */
+    .logo-wrap {
+      width: 94px;
+      height: 94px;
+      padding: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.96);
+      border: 3px solid rgba(255,255,255,0.75);
+      box-shadow: 0 5px 22px rgba(0,0,0,0.20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .logo-wrap img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: contain;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
+
+    .logo-fallback {
+      display: none;
+      font-size: 36px;
+      color: #6d28d9;
+    }
+
+    header h1 {
+      font-size: clamp(1.45rem, 4vw, 2.45rem);
+      font-weight: 900;
+      letter-spacing: 1.2px;
+      line-height: 1.25;
+      color: #ffffff;
+      text-shadow: 0 3px 12px rgba(0,0,0,0.18);
+    }
+
+    .subtitle {
+      margin-top: 7px;
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #fde68a;
+      letter-spacing: 1.8px;
+    }
+
+    .brand-tagline {
+      margin-top: 8px;
+      font-size: 0.88rem;
+      color: #e0f2fe;
+      letter-spacing: 0.4px;
+    }
+
+    /* Main syllabus card */
+    .syllabus-container {
+      width: min(760px, calc(100% - 32px));
+      margin: 34px auto;
+      padding: 30px;
+      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(129,140,248,0.18);
+      border-radius: 24px;
+      box-shadow: 0 15px 45px rgba(79,70,229,0.12);
+      animation: cardAppear 0.8s ease-out;
+    }
+
+    .course-badge {
+      width: fit-content;
+      margin: 0 auto 16px;
+      padding: 7px 15px;
+      border-radius: 30px;
+      color: #5b21b6;
+      background: #ede9fe;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .syllabus-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      text-align: center;
+      color: #5b21b6;
+      font-size: clamp(1.25rem, 3vw, 1.7rem);
+      font-weight: 900;
+    }
+
+    .syllabus-title i {
+      color: #0891b2;
+      font-size: 1.5rem;
+    }
+
+    .description {
+      margin-bottom: 25px;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.96rem;
+      line-height: 1.7;
+    }
+
+    .syllabus-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .syllabus-list li {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 15px 16px;
+      background: linear-gradient(110deg, #f8faff, #f5f3ff);
+      border: 1px solid #e5e7eb;
+      border-radius: 13px;
+      color: #334155;
+      font-size: 1rem;
+      line-height: 1.55;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      animation: listAppear 0.5s ease both;
+    }
+
+    .syllabus-list li:hover {
+      transform: translateY(-3px);
+      border-color: #a78bfa;
+      box-shadow: 0 7px 18px rgba(109,40,217,0.09);
+    }
+
+    .check-icon {
+      flex: 0 0 27px;
+      width: 27px;
+      height: 27px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+      border-radius: 50%;
+      color: white;
+      background: linear-gradient(135deg, #7c3aed, #0891b2);
+      font-size: 0.78rem;
+    }
+
+    .syllabus-list li:nth-child(1) { animation-delay: 0.04s; }
+    .syllabus-list li:nth-child(2) { animation-delay: 0.08s; }
+    .syllabus-list li:nth-child(3) { animation-delay: 0.12s; }
+    .syllabus-list li:nth-child(4) { animation-delay: 0.16s; }
+    .syllabus-list li:nth-child(5) { animation-delay: 0.20s; }
+    .syllabus-list li:nth-child(6) { animation-delay: 0.24s; }
+    .syllabus-list li:nth-child(7) { animation-delay: 0.28s; }
+    .syllabus-list li:nth-child(8) { animation-delay: 0.32s; }
+    .syllabus-list li:nth-child(9) { animation-delay: 0.36s; }
+
+    .back-area {
+      text-align: center;
+      margin-top: 28px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-width: 160px;
+      padding: 13px 28px;
+      background: linear-gradient(100deg, #6d28d9, #0891b2);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(109,40,217,0.23);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .back-btn:hover,
+    .back-btn:focus {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(109,40,217,0.30);
+    }
+
+    footer {
+      padding: 0 16px 25px;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.83rem;
+      line-height: 1.8;
+    }
+
+    footer strong {
+      color: #5b21b6;
+    }
+
+    @keyframes headerAppear {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes cardAppear {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes listAppear {
+      from { opacity: 0; transform: translateX(-12px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 25px 14px 29px;
+      }
+
+      .logo-wrap {
+        width: 78px;
+        height: 78px;
+      }
+
+      .subtitle {
+        font-size: 0.76rem;
+        letter-spacing: 1px;
+      }
+
+      .brand-tagline {
+        font-size: 0.8rem;
+      }
+
+      .syllabus-container {
+        margin: 22px auto;
+        padding: 23px 16px;
+        border-radius: 19px;
+      }
+
+      .syllabus-list li {
+        padding: 13px 12px;
+        font-size: 0.94rem;
+      }
+    }
+
+    @media print {
+      body {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body oncontextmenu="return false;">
+
+  <header>
+    <div class="brand">
+
+      <div class="logo-wrap">
+        <img
+          src="../logo.png"
+          alt="Namami Digital Skills Academy Logo"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+          draggable="false"
+        >
+        <i class="fas fa-graduation-cap logo-fallback"></i>
+      </div>
+
+      <div>
+        <h1>NAMAMI DIGITAL SKILLS ACADEMY</h1>
+        <div class="subtitle">SOHAGPUR · PRACTICAL COMPUTER TRAINING</div>
+        <div class="brand-tagline">
+          Learn Today • Build Skills • Grow Tomorrow
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="syllabus-container">
+
+    <div class="course-badge">
+      <i class="fas fa-book-open"></i> COURSE OUTLINE
+    </div>
+
+    <div class="syllabus-title">
+      <i class="fas fa-desktop"></i>
+      <span>Basic Computer Course Syllabus</span>
+    </div>
+
+    <p class="description">
+      Explore the essential computer skills and practical topics
+      included in your Basic Computer Course.
+    </p>
+
+    <ul class="syllabus-list">
+      <li>
+        <span class="check-icon"><i class="fas fa-check"></i></span>
+        <span>Introduction to Computers &amp; Hardware Components</span>
+      </li>
+
+      <li>
+        <span class="check-icon"><i class="fas fa-check"></i></span>
+        <span>Accessories and Peripherals</span>
+      </li>
+
+      <li>
+        <span class="check-icon"><i class="fas fa-check"></i></span>
+        <span>Windows Operating System Basics</span>
+      </li>
+
+      <li>
+        <span class="check-icon"><i class="fas fa-check"></i></span>
+        <span>Notepad &amp; Basic Projects</span>
+      </li>
+
+      <li>
+        <span class="check-icon"><i class="fas fa-check"></i></span>
+        <span>MS Office Basics (Word, Excel, PowerPoint)</span>
+      </li>
+
+      <li>
+        <span class="check-icon"><i class="fas fa-check"></i></span>
+        <span>File Handling &amp; Folder Management</span>
+      </li>
+
+      <li>
+        <span class="check-icon"><i class="fas fa-check"></i></span>
+        <span>Internet Basics &amp; Safe Browsing</span>
+      </li>
+
+      <li>
+        <span class="check-icon"><i class="fas fa-check"></i></span>
+        <span>MCQ Exam &amp; Practice Tests</span>
+      </li>
+
+      <li>
+        <span class="check-icon"><i class="fas fa-certificate"></i></span>
+        <span>Certificate after successful completion</span>
+      </li>
+    </ul>
+
+    <div class="back-area">
+      <button class="back-btn" type="button" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Back
+      </button>
+    </div>
+
+  </main>
+
+  <footer>
+    <strong>NAMAMI DIGITAL SKILLS ACADEMY</strong><br>
+    Sohagpur | Practical Computer Training
+  </footer>
+
+  <script>
+    // Disable right-click context menu
+    document.addEventListener("contextmenu", function(event) {
+      event.preventDefault();
+    });
+
+    // Block common copy/paste/cut and selection actions
+    document.addEventListener("copy", function(event) {
+      event.preventDefault();
+    });
+
+    document.addEventListener("cut", function(event) {
+      event.preventDefault();
+    });
+
+    document.addEventListener("paste", function(event) {
+      event.preventDefault();
+    });
+
+    document.addEventListener("selectstart", function(event) {
+      event.preventDefault();
+    });
+
+    document.addEventListener("dragstart", function(event) {
+      event.preventDefault();
+    });
+
+    // Block common browser tools, save, print and screenshot shortcuts
+    document.addEventListener("keydown", function(event) {
+      const key = event.key.toLowerCase();
+      const ctrlOrCmd = event.ctrlKey || event.metaKey;
+
+      if (
+        key === "f12" ||
+        (ctrlOrCmd && ["c", "x", "v", "a", "s", "p", "u"].includes(key)) ||
+        (ctrlOrCmd && event.shiftKey && ["i", "j", "c", "s"].includes(key)) ||
+        (event.shiftKey && key === "printscreen")
+      ) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    });
+
+    // Back button retains the original history behavior
+    function goBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = "../home.html";
+      }
+    }
+  </script>
+
+</body>
+</html>
