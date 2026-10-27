@@ -1,0 +1,1078 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Namami Digital Skills Academy | Student Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root {
+  --navy: #101a38;
+  --navy2: #19274d;
+  --blue: #4361ee;
+  --cyan: #39d5f6;
+  --purple: #7958f5;
+  --bg: #f4f7ff;
+  --text: #182342;
+  --muted: #7d89a8;
+  --white: #fff;
+  --shadow: 0 12px 35px rgba(28,48,100,.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 100;
+  padding: 24px 17px;
+  color: white;
+  background:
+    radial-gradient(circle at 10% 0%, #354e96 0, transparent 35%),
+    linear-gradient(165deg, var(--navy2), var(--navy) 75%);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 10px 0 35px rgba(15,27,62,.10);
+  transition: transform .3s ease;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 7px 24px;
+  border-bottom: 1px solid #ffffff20;
+}
+
+.logo-circle {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: white;
+  border: 3px solid #ffffff70;
+  box-shadow: 0 0 20px #39d5f650;
+  display: grid;
+  place-items: center;
+}
+
+.logo-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.brand-text h2 {
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: .3px;
+  font-weight: 800;
+}
+
+.brand-text p {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: #9bdfff;
+  margin-top: 4px;
+}
+
+.menu-label {
+  color: #8999c7;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 26px 13px 12px;
+}
+
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.side-link {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #c1cbea;
+  border: 1px solid transparent;
+  transition: .25s;
+}
+
+.side-link i {
+  width: 19px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.side-link:hover,
+.side-link.active {
+  color: white;
+  background: linear-gradient(100deg, #4361ee, #7458ee);
+  box-shadow: 0 8px 22px #4361ee35;
+  transform: translateX(3px);
+}
+
+.side-link.active {
+  border-color: #ffffff25;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+}
+
+.student-mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 8px;
+  border-top: 1px solid #ffffff20;
+  margin-bottom: 8px;
+}
+
+.avatar {
+  width: 39px;
+  height: 39px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 13px;
+  color: white;
+  background: linear-gradient(135deg, #39d5f6, #7958f5);
+  font-weight: 700;
+}
+
+.student-mini strong {
+  font-size: 11px;
+  display: block;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.student-mini small {
+  color: #9eacd1;
+  font-size: 10px;
+}
+
+.logout-link {
+  color: #ffb3bd;
+}
+
+.logout-link:hover {
+  background: #ff526d20;
+  color: white;
+}
+
+/* MAIN */
+
+.main {
+  margin-left: 260px;
+  min-height: 100vh;
+  padding: 25px 34px 30px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.top-left {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.menu-toggle {
+  display: none;
+  border: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: white;
+  color: var(--navy);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.page-heading h1 {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -.6px;
+}
+
+.page-heading p {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+.top-date {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 15px;
+  background: white;
+  border: 1px solid #e9edfa;
+  border-radius: 13px;
+  color: #536180;
+  font-size: 11px;
+  box-shadow: 0 4px 15px #23365e08;
+}
+
+.top-date i {
+  color: var(--blue);
+  font-size: 17px;
+}
+
+/* HERO */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 32px;
+  border-radius: 24px;
+  color: white;
+  background:
+    radial-gradient(circle at 85% 20%, #6c7aff65, transparent 30%),
+    linear-gradient(115deg, #172447, #293c79 70%, #3b4fa2);
+  box-shadow: 0 17px 35px #243b7d20;
+  animation: appear .7s ease both;
+}
+
+.hero:before,
+.hero:after {
+  content: "";
+  position: absolute;
+  border: 1px solid #ffffff18;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero:before {
+  width: 280px;
+  height: 280px;
+  right: -75px;
+  top: -115px;
+}
+
+.hero:after {
+  width: 200px;
+  height: 200px;
+  right: 10px;
+  bottom: -130px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border: 1px solid #ffffff30;
+  border-radius: 30px;
+  background: #ffffff12;
+  color: #a9edff;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.hero h2 {
+  font-size: clamp(25px, 3vw, 36px);
+  line-height: 1.35;
+  margin-top: 18px;
+  font-weight: 800;
+}
+
+.hero h2 span {
+  color: #68e3ff;
+}
+
+.hero p {
+  color: #d3dcfa;
+  max-width: 560px;
+  font-size: 12px;
+  line-height: 1.9;
+  margin-top: 12px;
+}
+
+.hero-bottom {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 17px;
+  border-radius: 11px;
+  background: linear-gradient(100deg, #4b6cff, #8a61ff);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 0 7px 20px #121d4e55;
+  transition: .25s;
+}
+
+.hero-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px #121d4e66;
+}
+
+.hero-note {
+  color: #d3dcfa;
+  font-size: 10px;
+}
+
+/* QUICK INFO */
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 17px;
+  margin-top: 22px;
+}
+
+.info-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 17px;
+  background: white;
+  border: 1px solid #e9edfa;
+  box-shadow: 0 5px 20px #24365e06;
+  transition: .25s;
+  animation: appear .7s ease both;
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.info-icon {
+  width: 47px;
+  height: 47px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 19px;
+}
+
+.icon-blue { background: #e9efff; color: #4361ee; }
+.icon-cyan { background: #e1faff; color: #0da9ca; }
+.icon-purple { background: #f0eaff; color: #7958f5; }
+
+.info-card h3 {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.info-card p {
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 5px;
+  line-height: 1.6;
+}
+
+/* COURSES */
+
+.section {
+  margin-top: 32px;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 12px;
+  margin-bottom: 17px;
+}
+
+.section-head h2 {
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.section-head p {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 5px;
+}
+
+.section-label {
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.course-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 185px;
+  padding: 21px;
+  border-radius: 18px;
+  border: 1px solid #e8edfa;
+  background: white;
+  box-shadow: 0 5px 20px #24365e05;
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+  animation: appear .65s ease both;
+}
+
+.course-card:before {
+  content: "";
+  position: absolute;
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  right: -43px;
+  top: -43px;
+  background: var(--bubble, #e9efff);
+  opacity: .75;
+  transition: .3s;
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px #24365e12;
+  border-color: #d4ddff;
+}
+
+.course-card:hover:before {
+  transform: scale(1.4);
+}
+
+.course-icon {
+  position: relative;
+  z-index: 1;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--bubble, #e9efff);
+  color: var(--course-color, #4361ee);
+  font-size: 19px;
+  margin-bottom: 15px;
+}
+
+.course-card h3 {
+  font-size: 13px;
+  line-height: 1.6;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.course-card p {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+.course-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 15px;
+  padding-top: 12px;
+  border-top: 1px solid #edf0f8;
+  color: var(--course-color, #4361ee);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* GALLERY */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 125px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 3px solid white;
+  box-shadow: 0 5px 18px #24365e0c;
+  transition: .25s;
+}
+
+.gallery-grid img:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  padding: 25px 10px 5px;
+  color: #8a95b1;
+  font-size: 10px;
+  line-height: 1.9;
+}
+
+footer strong {
+  color: #4d5d83;
+}
+
+/* MOBILE */
+
+.overlay {
+  display: none;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(13px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1150px) {
+  .main { padding: 22px; }
+  .courses-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .info-grid { gap: 11px; }
+  .info-card { padding: 15px; }
+}
+
+@media (max-width: 760px) {
+  .sidebar {
+    transform: translateX(-105%);
+    width: 270px;
+  }
+
+  body.sidebar-open .sidebar {
+    transform: translateX(0);
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: #101a3880;
+    z-index: 90;
+  }
+
+  body.sidebar-open .overlay {
+    display: block;
+  }
+
+  .main {
+    margin-left: 0;
+    padding: 18px 14px 25px;
+  }
+
+  .menu-toggle {
+    display: grid;
+    place-items: center;
+  }
+
+  .page-heading h1 { font-size: 18px; }
+  .page-heading p { font-size: 10px; }
+
+  .top-date {
+    padding: 10px;
+    font-size: 0;
+  }
+
+  .top-date i { font-size: 17px; }
+
+  .hero { padding: 25px 21px; border-radius: 19px; }
+  .hero h2 { font-size: 26px; }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 11px;
+  }
+
+  .info-card { padding: 15px; }
+
+  .courses-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 11px;
+  }
+
+  .course-card {
+    padding: 15px;
+    min-height: 190px;
+  }
+
+  .course-card h3 { font-size: 12px; }
+  .course-card p { font-size: 10px; }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-grid img { height: 125px; }
+}
+
+@media (max-width: 390px) {
+  .courses-grid { grid-template-columns: 1fr; }
+  .course-card { min-height: auto; }
+  .section-head h2 { font-size: 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *:before, *:after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+
+<script>
+/* Basic browser shortcuts protection.
+   This is not complete website security. */
+document.addEventListener("contextmenu", function(e) {
+  e.preventDefault();
+});
+
+document.addEventListener("keydown", function(e) {
+  const key = e.key.toLowerCase();
+
+  if (
+    (e.ctrlKey && ["u", "s"].includes(key)) ||
+    (e.ctrlKey && e.shiftKey && key === "i") ||
+    e.key === "F12"
+  ) {
+    e.preventDefault();
+  }
+});
+
+/* Keep the existing student login check */
+window.addEventListener("DOMContentLoaded", function() {
+  const studentName = localStorage.getItem("studentName");
+
+  if (!studentName) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  const nameElement = document.getElementById("student-name");
+  const miniNameElement = document.getElementById("mini-student-name");
+  const avatarElement = document.getElementById("student-avatar");
+
+  nameElement.textContent = studentName;
+  miniNameElement.textContent = studentName;
+
+  const firstLetter = studentName.trim().charAt(0).toUpperCase() || "S";
+  avatarElement.textContent = firstLetter;
+
+  updateDateTime();
+  setInterval(updateDateTime, 1000);
+});
+
+function updateDateTime() {
+  const now = new Date();
+
+  document.getElementById("current-date").textContent =
+    now.toLocaleDateString("en-IN", {
+      weekday: "short",
+      day: "numeric",
+      month: "short",
+      year: "numeric"
+    });
+
+  document.getElementById("current-time").textContent =
+    now.toLocaleTimeString("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit"
+    });
+}
+
+function logoutStudent() {
+  localStorage.removeItem("studentName");
+  localStorage.removeItem("student_name");
+  window.location.href = "index.html";
+}
+
+function toggleSidebar() {
+  document.body.classList.toggle("sidebar-open");
+}
+
+function closeSidebar() {
+  document.body.classList.remove("sidebar-open");
+}
+</script>
+
+<style id="namami-copy-protection">
+  html, body, body * {
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+  }
+
+  img {
+    -webkit-user-drag: none !important;
+    user-drag: none !important;
+  }
+
+  input, textarea, [contenteditable="true"] {
+    -webkit-user-select: text !important;
+    user-select: text !important;
+  }
+</style>
+
+</head>
+
+<body>
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo-circle">
+        <img src="logo.png" alt="Namami Academy Logo">
+      </div>
+      <div class="brand-text">
+        <h2>NAMAMI DIGITAL<br>SKILLS ACADEMY</h2>
+        <p>SOHAGPUR • LEARN & GROW</p>
+      </div>
+    </div>
+
+    <div class="menu-label">STUDENT MENU</div>
+
+    <nav class="side-nav">
+      <a href="home.html" class="side-link active" onclick="closeSidebar()">
+        <i class="fa-solid fa-house"></i> Dashboard
+      </a>
+
+      <a href="Study_Materials/notes.html" class="side-link">
+        <i class="fa-solid fa-book-open"></i> Study Materials
+      </a>
+
+      <a href="#" class="side-link" onclick="return false;">
+        <i class="fa-solid fa-list-check"></i> Assignments
+      </a>
+
+      <a href="#" class="side-link" onclick="return false;">
+        <i class="fa-solid fa-chart-column"></i> Results
+      </a>
+
+      <a href="Syllabus/syllabus.html" class="side-link">
+        <i class="fa-solid fa-file-lines"></i> Course Syllabus
+      </a>
+
+      <a href="#academy-gallery" class="side-link" onclick="closeSidebar()">
+        <i class="fa-solid fa-images"></i> Academy Gallery
+      </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="menu-label">YOUR ACCOUNT</div>
+
+      <div class="student-mini">
+        <div class="avatar" id="student-avatar">S</div>
+        <div>
+          <strong id="mini-student-name">Student</strong>
+          <small>Registered Student</small>
+        </div>
+      </div>
+
+      <button type="button" class="side-link logout-link"
+        onclick="logoutStudent()"
+        style="background:transparent;border:0;text-align:left;cursor:pointer;">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </button>
+    </div>
+  </aside>
+
+  <div class="overlay" onclick="closeSidebar()"></div>
+
+  <main class="main">
+
+    <div class="topbar">
+      <div class="top-left">
+        <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="page-heading">
+          <h1>Student Dashboard</h1>
+          <p>Welcome to your digital learning space.</p>
+        </div>
+      </div>
+
+      <div class="top-date">
+        <i class="fa-regular fa-calendar-days"></i>
+        <div>
+          <div id="current-date">Loading date...</div>
+          <div id="current-time">Loading time...</div>
+        </div>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-content">
+        <span class="hero-tag">
+          <i class="fa-solid fa-graduation-cap"></i>
+          YOUR LEARNING JOURNEY STARTS HERE
+        </span>
+
+        <h2>
+          Welcome back,<br>
+          <span id="student-name">Student</span>!
+        </h2>
+
+        <p>
+          Welcome to Namami Digital Skills Academy, Sohagpur.
+          Explore your study materials, revise important topics
+          and build practical digital skills step by step.
+        </p>
+
+        <div class="hero-bottom">
+          <a href="Study_Materials/notes.html" class="hero-button">
+            <i class="fa-solid fa-book-open"></i>
+            Explore Study Materials
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+          <span class="hero-note">
+            <i class="fa-solid fa-circle-check"></i>
+            Learn • Practice • Improve
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-grid">
+      <div class="info-card">
+        <div class="info-icon icon-blue">
+          <i class="fa-solid fa-laptop-code"></i>
+        </div>
+        <div>
+          <h3>Practical Learning</h3>
+          <p>Build computer skills through practice and revision.</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon icon-cyan">
+          <i class="fa-solid fa-book-open-reader"></i>
+        </div>
+        <div>
+          <h3>Study Resources</h3>
+          <p>Access your available notes and learning materials.</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon icon-purple">
+          <i class="fa-solid fa-bullseye"></i>
+        </div>
+        <div>
+          <h3>Skill Development</h3>
+          <p>Learn digital skills for education and career growth.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="courses">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Explore & Learn</div>
+          <h2>Our Learning Programs</h2>
+          <p>Explore the computer and digital skills programs offered in the portal.</p>
+        </div>
+      </div>
+
+      <div class="courses-grid">
+
+        <article class="course-card" style="--bubble:#e9efff;--course-color:#4361ee;">
+          <div class="course-icon"><i class="fa-solid fa-desktop"></i></div>
+          <h3>Basic Computer Course</h3>
+          <p>Computer parts, accessories, Notepad, MS Office basics and file handling.</p>
+          <div class="course-bottom"><span>Computer Fundamentals</span><i class="fa-solid fa-arrow-right"></i></div>
+        </article>
+
+        <article class="course-card" style="--bubble:#e0faff;--course-color:#079fbe;">
+          <div class="course-icon"><i class="fa-solid fa-laptop"></i></div>
+          <h3>Advanced Computer Course</h3>
+          <p>MS Word, Excel, PowerPoint, Access and other office applications.</p>
+          <div class="course-bottom"><span>Office Skills</span><i class="fa-solid fa-arrow-right"></i></div>
+        </article>
+
+        <article class="course-card" style="--bubble:#f0eaff;--course-color:#7958f5;">
+          <div class="course-icon"><i class="fa-solid fa-keyboard"></i></div>
+          <h3>CPCT Preparation</h3>
+          <p>Hindi and English typing practice, computer MCQs and exam preparation.</p>
+          <div class="course-bottom"><span>Typing & Practice</span><i class="fa-solid fa-arrow-right"></i></div>
+        </article>
+
+        <article class="course-card" style="--bubble:#e2f8ed;--course-color:#159c69;">
+          <div class="course-icon"><i class="fa-solid fa-globe"></i></div>
+          <h3>Internet & Email</h3>
+          <p>Internet browsing, email handling, online safety and digital communication.</p>
+          <div class="course-bottom"><span>Digital Literacy</span><i class="fa-solid fa-arrow-right"></i></div>
+        </article>
+
+        <article class="course-card" style="--bubble:#fff0df;--course-color:#db8121;">
+          <div class="course-icon"><i class="fa-solid fa-calculator"></i></div>
+          <h3>Tally with GST</h3>
+          <p>Accounting software, ledger creation, vouchers and GST fundamentals.</p>
+          <div class="course-bottom"><span>Accounting Skills</span><i class="fa-solid fa-arrow-right"></i></div>
+        </article>
+
+        <article class="course-card" style="--bubble:#ffe8f0;--course-color:#d94f87;">
+          <div class="course-icon"><i class="fa-solid fa-palette"></i></div>
+          <h3>Graphic Design</h3>
+          <p>Creative design fundamentals, graphics and visual communication projects.</p>
+          <div class="course-bottom"><span>Creative Skills</span><i class="fa-solid fa-arrow-right"></i></div>
+        </article>
+
+        <article class="course-card" style="--bubble:#e4f1ff;--course-color:#2877d4;">
+          <div class="course-icon"><i class="fa-solid fa-chart-column"></i></div>
+          <h3>MS Power BI</h3>
+          <p>Data analysis, interactive dashboards and data visualization fundamentals.</p>
+          <div class="course-bottom"><span>Data Analytics</span><i class="fa-solid fa-arrow-right"></i></div>
+        </article>
+
+        <article class="course-card" style="--bubble:#e5f8f2;--course-color:#169d80;">
+          <div class="course-icon"><i class="fa-solid fa-code"></i></div>
+          <h3>Web Designing</h3>
+          <p>Learn HTML, CSS and JavaScript to understand responsive web pages.</p>
+          <div class="course-bottom"><span>Web Development</span><i class="fa-solid fa-arrow-right"></i></div>
+        </article>
+
+        <article class="course-card" style="--bubble:#fff5d9;--course-color:#b88608;">
+          <div class="course-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h3>Competitive Exam Computer Materials</h3>
+          <p>Computer theory, MCQs and practice resources for computer-related exams.</p>
+          <div class="course-bottom"><span>Exam Preparation</span><i class="fa-solid fa-arrow-right"></i></div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section" id="academy-gallery">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Learning Environment</div>
+          <h2>Academy Gallery</h2>
+          <p>A glimpse of computer learning and digital education.</p>
+        </div>
+      </div>
+
+      <div class="gallery-grid">
+        <img src="https://www.shutterstock.com/image-photo/male-teacher-using-interactive-whiteboard-260nw-2337906043.jpg" alt="Teacher in classroom" loading="lazy">
+        <img src="https://www.21kschool.com/ae/wp-content/uploads/sites/10/2024/08/What-is-Computer.png" alt="Computer learning" loading="lazy">
+        <img src="https://static.vecteezy.com/system/resources/previews/001/937/754/non_2x/online-education-application-learning-worldwide-on-computer-mobile-website-background-social-distance-concept-the-classroom-training-course-library-illustration-flat-vector.jpg" alt="Digital education" loading="lazy">
+        <img src="https://img.freepik.com/free-photo/young-man-computer-classroom_23-2147654041.jpg" alt="Computer classroom" loading="lazy">
+        <img src="https://img.freepik.com/free-photo/teacher-helping-his-student-computer-class_23-2147654047.jpg" alt="Teacher helping student" loading="lazy">
+      </div>
+    </section>
+
+    <footer>
+      <strong>NAMAMI DIGITAL SKILLS ACADEMY – SOHAGPUR</strong><br>
+      Practical Computer Training | Learn • Practice • Grow<br>
+      Developed by Mr. Pawan Soni © <span id="footer-year"></span>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+document.getElementById("footer-year").textContent = new Date().getFullYear();
+</script>
+
+<script id="namami-copy-protection-script">
+(function () {
+  // Right-click/context menu block
+  document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }, true);
+
+  // Copy, cut, text selection and dragging block
+  ["copy", "cut", "selectstart", "dragstart"].forEach(function (eventName) {
+    document.addEventListener(eventName, function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }, true);
+  });
+
+  // Common keyboard shortcuts block
+  document.addEventListener("keydown", function (e) {
+    const key = (e.key || "").toLowerCase();
+
+    if (
+      ((e.ctrlKey || e.metaKey) &&
+        ["a", "c", "x", "u", "s", "p", "i", "j"].includes(key)) ||
+      (e.ctrlKey && e.shiftKey && ["i", "j", "c"].includes(key)) ||
+      key === "f12"
+    ) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
+})();
+</script>
+</body>
+</html>
